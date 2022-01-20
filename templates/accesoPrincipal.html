@@ -1,0 +1,101 @@
+{% extends "menuAcceso.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/admin/">Acceso Clinica Vulnerable</a></h1>
+
+        </div>
+
+
+    </div>
+    <!-- END Header -->
+
+
+
+    <div class="main shifted" id="main">
+
+
+
+      <div class="content">
+
+
+
+        <!-- Content -->
+        <div id="content" class="colM">
+
+
+
+
+
+
+
+
+<div id="content-main">
+
+
+
+<form action="validaAcceso/" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+  <div class="form-row">
+
+    <label class="required" for="id_username">Username:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+  </div>
+  <div class="form-row">
+
+    <label class="required" for="id_password">Password:</label> <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+    <input type="hidden" name="next" value="/admin/">
+  </div>
+
+    <div class="form-row">
+
+
+        <label for="seleccion1" class="col-form-label">Seleccione Perfil:</label>
+        <select id="seleccion1" name="seleccion1">
+            {% for perfiles in Perfiles %}
+            <option value="{{perfiles.id}}"> {{perfiles.nombre}}</option>
+            {% endfor %}
+        </select>
+
+
+
+
+
+
+
+
+
+   <!--  <label class="required" for="id_perfil">Perfil:</label> <input type="text" name="perfil" autofocus="" autocapitalize="none" autocomplete="perfil" maxlength="150" required="" id="id_perfil">  -->
+  </div>
+
+
+  <div class="submit-row">
+    <input type="submit" value="Log in">
+  </div>
+</form>
+
+</div>
+
+
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+      </div>
+    </div>
+</div>
+<!-- END Container -->
+
+
+
+
+{% endblock %}

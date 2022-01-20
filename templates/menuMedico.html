@@ -8,11 +8,17 @@
         {% block title %} {% endblock %}
     </title>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Custom js -->
+    <!-- Custom css -->
+    <link rel="stylesheet" type="text/css"  href = {% static 'css/login.css' %} >
+    <link rel="stylesheet" type="text/css"  href = {% static 'nav_sidebar.css' %} >
+    <link rel="stylesheet" type="text/css"  href = {% static 'css/base.css' %} >
+    <link rel="stylesheet" type="text/css"  href = {% static 'css/responsive.css' %} >
+
+
 
 
 </head>
-<body>
+<body class=" login" data-admin-utc-offset="0"  ">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Clinica Vulnerables</a>
@@ -23,93 +29,45 @@
        <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="#">Mision</a>
 
-              <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Admisiones
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Hospitalizacion</a>
-          <a class="dropdown-item" href="/manejoLuz#">Urgencias</a>
-          <a class="dropdown-item" href="#">Ambulatorios</a>
-
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-
-
-
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Mecanicos Pacientes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Manejo cama</a>
-          <a class="dropdown-item" href="/manejoLuz#">Luz de habitacion</a>
-          <a class="dropdown-item" href="#">Televisor</a>
-          <a class="dropdown-item" href="#">Calefaccion</a>
-            <a class="dropdown-item" href="/ambienteMusical#">Ambientacion Musical</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-
+             <a class="nav-link" href="/historiaView#">Historia Clinica</a>
 
               <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Citas Medicas
+          Toma de Examenes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Agenda Medica</a>
-          <a class="dropdown-item" href="/manejoLuz#">Registro</a>
-          <a class="dropdown-item" href="#">Traslados</a>
-
+          <a class="dropdown-item" href="#">Presion Arterial</a>
+          <a class="dropdown-item" href="/manejoLuz#">Températura</a>
+          <a class="dropdown-item" href="#">Electrocardiograma</a>
+          <a class="dropdown-item" href="#">Tension</a>
+            <a class="dropdown-item" href="/ambienteMusical#">Saturacion</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
 
 
-          <a class="nav-link" href="/historiaView#">Clinicos</a>
 
-
-
-            <li class="nav-item dropdown">
+             <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Administrativos
+          Informes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Facturacion</a>
-          <a class="dropdown-item" href="/manejoLuz#">Remisiones</a>
-          <a class="dropdown-item" href="#">Radicacion de Facturas</a>
-          <a class="dropdown-item" href="#">Rips</a>
+          <a class="dropdown-item" href="#">Reporte_1</a>
+          <a class="dropdown-item" href="/manejoLuz#">Reporte_2</a>
+          <a class="dropdown-item" href="#">Reporte_3</a>
+          <a class="dropdown-item" href="#">Reporte_4</a>
+            <a class="dropdown-item" href="/ambienteMusical#">Reporte_5</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
 
 
-
-
-
-
-          <a class="nav-link" href="/historiaView#">Reportes</a>
-
-
-
-
-
-
-
-
-
-        <a class="nav-link" href="/acceso#">Subir Fotografias</a>
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-           <a class="nav-link" href="/salir">Salir</a>
+             <a class="nav-link" href="/salir">Salir</a>
 
       </div>
     </div>

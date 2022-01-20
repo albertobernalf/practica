@@ -11,7 +11,7 @@ import speech_recognition as sr
 import time
 import json
 import pyttsx3
-
+import MySQLdb
 
 
 
@@ -54,6 +54,152 @@ def menu(request):
 def acceso(request):
     print("Ingreso a acceso")
     return render(request, "home.html")
+
+def menuAcceso(request):
+    print("Ingreso a acceso")
+
+    miConexion = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    cur = miConexion.cursor()
+    comando = "SELECT id ,nombre FROM planta_tiposPlanta"
+    cur.execute(comando)
+    print(comando)
+
+    perfiles = []
+    context = {}
+
+    for id, nombre in cur.fetchall():
+        perfiles.append({'id': id, 'nombre': nombre})
+
+    miConexion.close()
+    print(perfiles)
+
+    context['Perfiles'] = perfiles
+
+    return render(request, "accesoPrincipal.html", context)
+
+def validaAcceso(request):
+    print("Hola Entre a validar el acceso Principal")
+
+    username = request.POST["username"]
+    print(username)
+    contrasena = request.POST["password"]
+    perfil = request.POST["seleccion1"]
+    print(contrasena)
+    print(perfil)
+
+
+
+    miConexion0 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    cur0 = miConexion0.cursor()
+    comando = "select p.nombre nombre from planta_planta p where p.documento =' " + username + "'"
+    cur0.execute(comando)
+
+    planta = []
+
+    for nombre in cur0.fetchall():
+        planta.append({'nombre': nombre})
+
+
+    if planta == []:
+
+        miConexion0.close()
+        return HttpResponse("Personal No existe ! ")
+    else:
+        miConexion1 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+        cur1 = miConexion1.cursor()
+        comando = "select p.contrasena contrasena from planta_planta p where p.documento =' " + username + "'" + " AND contrasena = '" + contrasena +"'"
+        cur1.execute(comando)
+
+        plantaContrasena = []
+
+        for nombre in cur1.fetchall():
+            plantaContrasena.append({'contrasena': contrasena})
+
+        if plantaContrasena == []:
+            miConexion1.close()
+            return HttpResponse("Contraseña invalida ! ")
+        else:
+
+
+            miConexion2 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+            cur2 = miConexion1.cursor()
+            comando = "select perf.id_perfilplanta_id perfil from planta_planta p , planta_perfilesplanta perf where p.documento =' " + username + "'" + " AND p.documento = perf.documento  AND  perf.id_perfilPlanta_id= " + perfil
+            cur2.execute(comando)
+            print (comando)
+            perfil = []
+
+            for perfil in cur2.fetchall():
+                plantaContrasena.append({'perfil': perfil})
+
+
+            if perfil == []:
+                miConexion0.close()
+                miConexion1.close()
+                miConexion2.close()
+                return HttpResponse("Perfil No autorizado ! ")
+            else:
+                print("passe")
+
+                print (perfil[0])
+
+                if (perfil[0] == 1):
+                    miConexion0.close()
+                    miConexion1.close()
+                    miConexion2.close()
+                    return render(request, "menuMedico.html")
+                if (perfil[0] == 2):
+                    miConexion0.close()
+                    miConexion1.close()
+                    miConexion2.close()
+                    return render(request, "menuEnfermero.html")
+                if (perfil[0] == 3):
+                    miConexion0.close()
+                    miConexion1.close()
+                    miConexion2.close()
+                    return render(request, "menuAuxiliar.html")
+                if (perfil[0] == 4):
+                    miConexion0.close()
+                    miConexion1.close()
+                    miConexion2.close()
+                    return render(request, "menuCitasMedicas.html")
+                if (perfil[0] == 5):
+                    miConexion0.close()
+                    miConexion1.close()
+                    miConexion2.close()
+                    return render(request, "menuFacturacion.html")
+                if (perfil[0] == 6):
+                    miConexion0.close()
+                    miConexion1.close()
+                    miConexion2.close()
+                    return render(request, "menuAdmisiones.html")
+
+    return render(request, "menuMedico.html",context)
+
+
+
+
+def salir(request):
+    print("Voy a Salir")
+
+    miConexion = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    cur = miConexion.cursor()
+    comando = "SELECT id ,nombre FROM planta_tiposPlanta"
+    cur.execute(comando)
+    print(comando)
+
+    perfiles = []
+    context = {}
+
+    for id, nombre in cur.fetchall():
+        perfiles.append({'id': id, 'nombre': nombre})
+
+    miConexion.close()
+    print(perfiles)
+
+    context['Perfiles'] = perfiles
+
+    return render(request, "accesoPrincipal.html", context)
+
 
 
 def reconocerAudio(request):

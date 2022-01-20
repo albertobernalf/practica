@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'clinico',
     'citasMedicas',
     'mecanicosPacientes',
+    'planta',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'vulnerable1',
-	'HOST' : '192.168.0.14',
+	'HOST' : '192.168.0.11',
 	'PORT' : '3306',
 	'USER' : 'root',
 	'PASSWORD' : '',
