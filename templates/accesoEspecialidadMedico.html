@@ -1,4 +1,4 @@
-{% extends "menuAcceso.html" %}
+{% extends "menuMedico.html" %}
 {% load static %}
 
 {% block content %}
@@ -13,7 +13,7 @@
     <div id="header">
         <div id="branding">
 
-<h1 id="site-name"><a href="/admin/">Acceso Clinica Vulnerable</a></h1>
+<h1 id="site-name"><a href="/admin/">Seleccion Especialidad</a></h1>
 
         </div>
 
@@ -46,27 +46,16 @@
 
 
 <form action="validaAcceso/" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
-  <div class="form-row">
-
-    <label class="required" for="id_username">Username:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
-  </div>
-  <div class="form-row">
-
-    <label class="required" for="id_password">Password:</label> <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
-    <input type="hidden" name="next" value="/admin/">
-  </div>
 
     <div class="form-row">
 
 
-        <label for="seleccion1" class="col-form-label">Seleccione Perfil:</label>
+        <label for="seleccion1" class="col-form-label">Especialidad:</label>
         <select id="seleccion1" name="seleccion1">
             {% for perfiles in Perfiles %}
             <option value="{{perfiles.id}}"> {{perfiles.nombre}}</option>
             {% endfor %}
         </select>
-        {{dato1}}
-
 
 
 

@@ -77,6 +77,33 @@ def menuAcceso(request):
 
     return render(request, "accesoPrincipal.html", context)
 
+
+
+
+def accesoEspecialidadMedico(request):
+    print("Ingreso a acceso")
+
+    miConexion = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    cur = miConexion.cursor()
+    comando = "SELECT id ,nombre FROM planta_tiposPlanta"
+    cur.execute(comando)
+    print(comando)
+
+    perfiles = []
+    context = {}
+
+    for id, nombre in cur.fetchall():
+        perfiles.append({'id': id, 'nombre': nombre})
+
+    miConexion.close()
+    print(perfiles)
+
+    context['Perfiles'] = perfiles
+
+    return render(request, "accesoEspecialidadMedico.html", context)
+
+
+
 def validaAcceso(request):
     print("Hola Entre a validar el acceso Principal")
 
@@ -102,8 +129,18 @@ def validaAcceso(request):
 
     if planta == []:
 
+        dato1 = []
+        dato1.append({'Error': "Personal No existe ! "})
+        dato = {"Personal No existe ! "}
+
+
+
+
         miConexion0.close()
-        return HttpResponse("Personal No existe ! ")
+        print ("devuelvo dato = ", dato1)
+
+        return render(request, "accesoPrincipal.html", dato1)
+        #return HttpResponse("Personal No existe ! ")
     else:
         miConexion1 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
         cur1 = miConexion1.cursor()
