@@ -40,15 +40,8 @@ urlpatterns = [
     path('motivoInvidente/', viewsClinico.motivoInvidente),
     path('resMotivoInvidente/', viewsClinico.resMotivoInvidente),
     path('prueba/', viewsClinico.prueba),
-    path('manejoLuz/', viewsmecanicosPacientes.manejoLuz),
-    path('prenderLuz/', viewsmecanicosPacientes.prenderLuz),
-    path('apagarLuz/', viewsmecanicosPacientes.apagarLuz),
-
-
-
-
-
-
+    path('manejoLuz/', viewsmecanicosPacientes.manejoLuz.as_view()),
+    path('ambienteMusical/', viewsmecanicosPacientes.ambienteMusical.as_view()),
 
 ]
 

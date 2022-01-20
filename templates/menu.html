@@ -15,32 +15,88 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Aplicacion Vulnerables</a>
+    <a class="navbar-brand" href="#">Clinica Vulnerables</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
        <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="#">Mision</a>
-        <a class="nav-link" href="#">Admisiones</a>
-                     <li class="nav-item dropdown">
+
+              <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Admisiones
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Hospitalizacion</a>
+          <a class="dropdown-item" href="/manejoLuz#">Urgencias</a>
+          <a class="dropdown-item" href="#">Ambulatorios</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+
+
+
+        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Mecanicos Pacientes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Subir cama</a>
-          <a class="dropdown-item" href="/manejoLuz#">Manejo de Luz</a>
-          <a class="dropdown-item" href="#">Encender Televisor</a>
+          <a class="dropdown-item" href="#">Manejo cama</a>
+          <a class="dropdown-item" href="/manejoLuz#">Luz de habitacion</a>
+          <a class="dropdown-item" href="#">Televisor</a>
           <a class="dropdown-item" href="#">Calefaccion</a>
+            <a class="dropdown-item" href="/ambienteMusical#">Ambientacion Musical</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-           <a class="nav-link" href="/historiaView#">Citas Medicas</a>
+
+
+              <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Citas Medicas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Agenda Medica</a>
+          <a class="dropdown-item" href="/manejoLuz#">Registro</a>
+          <a class="dropdown-item" href="#">Traslados</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+
+
           <a class="nav-link" href="/historiaView#">Clinicos</a>
 
-          <a class="nav-link" href="/historiaView#">Administrativos</a>
+
+
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrativos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Facturacion</a>
+          <a class="dropdown-item" href="/manejoLuz#">Remisiones</a>
+          <a class="dropdown-item" href="#">Radicacion de Facturas</a>
+          <a class="dropdown-item" href="#">Rips</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+
+
+
+
+
+
           <a class="nav-link" href="/historiaView#">Reportes</a>
 
 
@@ -53,6 +109,7 @@
 
         <a class="nav-link" href="/acceso#">Subir Fotografias</a>
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+
       </div>
     </div>
   </div>
@@ -488,58 +545,6 @@ $("#btnmotivoInvidente").click(function(){
 
 
 
-     $("#btnencender").click(function(){
-
-        nombre="nada";
-
-
-
-		 $.ajax({
-	           url: '/prenderLuz',
-	           type: 'GET',
-
-	           data : {},
-	  		success: function (respuesta) {
-                     var data = JSON.parse(respuesta);
-                             alert("llegue"),
-                             alert(data.mensaje);
-
-	                       document.formHistoria["motivo"].value =data.mensaje;
-                    },
-	   		    error: function (request, status, error) {
-
-	   			    $("#mensajes").html(" !  Señas  con error !");
-	   	    	}
-
-	     });
-    });
-
-
- $("#btnApagar").click(function(){
-
-        nombre="nada";
-
-
-
-		 $.ajax({
-	           url: '/apagarLuz',
-	           type: 'GET',
-
-	           data : {},
-	  		success: function (respuesta) {
-                     var data = JSON.parse(respuesta);
-                             alert("llegue"),
-                             alert(data.mensaje);
-
-	                       document.formHistoria["motivo"].value =data.mensaje;
-                    },
-	   		    error: function (request, status, error) {
-
-	   			    $("#mensajes").html(" !  Señas  con error !");
-	   	    	}
-
-	     });
-    });
 
 </script>
 </body>
