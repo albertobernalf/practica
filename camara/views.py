@@ -58,7 +58,7 @@ def acceso(request):
 def menuAcceso(request):
     print("Ingreso a acceso")
 
-    miConexion = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM planta_tiposPlanta"
     cur.execute(comando)
@@ -80,12 +80,15 @@ def menuAcceso(request):
 
 
 
-def accesoEspecialidadMedico(request):
+def accesoEspecialidadMedico(request, documento):
     print("Ingreso a acceso")
+    print ("el medico es")
+    print (documento)
 
-    miConexion = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
     cur = miConexion.cursor()
-    comando = "SELECT id ,nombre FROM planta_tiposPlanta"
+    comando = "select e.id id ,e.nombre nombre from clinico_especialidadesmedicos c, clinico_especialidades e , planta_planta p where p.documento = '" + documento + "' AND c.id_medico_id=p.id and c.id_especialidad_id=e.id"
     cur.execute(comando)
     print(comando)
 
@@ -99,6 +102,7 @@ def accesoEspecialidadMedico(request):
     print(perfiles)
 
     context['Perfiles'] = perfiles
+    context['documento'] = documento
 
     return render(request, "accesoEspecialidadMedico.html", context)
 
@@ -113,10 +117,13 @@ def validaAcceso(request):
     perfil = request.POST["seleccion1"]
     print(contrasena)
     print(perfil)
+    context = {}
+    context['documento'] = username
+    print (context['documento'])
 
 
 
-    miConexion0 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    miConexion0 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
     cur0 = miConexion0.cursor()
     comando = "select p.nombre nombre from planta_planta p where p.documento =' " + username + "'"
     cur0.execute(comando)
@@ -142,7 +149,7 @@ def validaAcceso(request):
         return render(request, "accesoPrincipal.html", dato1)
         #return HttpResponse("Personal No existe ! ")
     else:
-        miConexion1 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
         cur1 = miConexion1.cursor()
         comando = "select p.contrasena contrasena from planta_planta p where p.documento =' " + username + "'" + " AND contrasena = '" + contrasena +"'"
         cur1.execute(comando)
@@ -158,7 +165,7 @@ def validaAcceso(request):
         else:
 
 
-            miConexion2 = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+            miConexion2 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
             cur2 = miConexion1.cursor()
             comando = "select perf.id_perfilplanta_id perfil from planta_planta p , planta_perfilesplanta perf where p.documento =' " + username + "'" + " AND p.documento = perf.documento  AND  perf.id_perfilPlanta_id= " + perfil
             cur2.execute(comando)
@@ -183,17 +190,17 @@ def validaAcceso(request):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuMedico.html")
+                    return render(request, "menuMedico.html", context)
                 if (perfil[0] == 2):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuEnfermero.html")
+                    return render(request, "menuEnfermero.html", context)
                 if (perfil[0] == 3):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuAuxiliar.html")
+                    return render(request, "menuAuxiliar.html", context)
                 if (perfil[0] == 4):
                     miConexion0.close()
                     miConexion1.close()
@@ -203,12 +210,12 @@ def validaAcceso(request):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuFacturacion.html")
+                    return render(request, "menuFacturacion.html", context)
                 if (perfil[0] == 6):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuAdmisiones.html")
+                    return render(request, "menuAdmisiones.html", context)
 
     return render(request, "menuMedico.html",context)
 
@@ -218,7 +225,7 @@ def validaAcceso(request):
 def salir(request):
     print("Voy a Salir")
 
-    miConexion = MySQLdb.connect(host='192.168.0.11', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM planta_tiposPlanta"
     cur.execute(comando)

@@ -11,10 +11,10 @@ class especialidadesAdmin(admin.ModelAdmin):
         search_fields = ("id", "nombre")
 
 
-class medicosAdmin(admin.ModelAdmin):
+#class medicosAdmin(admin.ModelAdmin):
 
-    list_display = ("id","nombre","direccion","telefono","contacto")
-    search_fields = ("id","nombre","direccion","telefono","contacto")
+#    list_display = ("id","nombre","direccion","telefono","contacto")
+#    search_fields = ("id","nombre","direccion","telefono","contacto")
 
 class tiposExamenAdmin(admin.ModelAdmin):
         list_display = ("id", "nombre")
@@ -58,7 +58,7 @@ class especialidadesMedicosAdmin(admin.ModelAdmin):
         search_fields = ("id", "id_especialidad", "id_medico")
 
 
-admin.site.register(Medicos, medicosAdmin)
+#admin.site.register(Medicos, medicosAdmin)
 admin.site.register(Especialidades, especialidadesAdmin)
 admin.site.register(TiposExamen, tiposExamenAdmin)
 admin.site.register(Examenes, examenesAdmin)

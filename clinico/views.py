@@ -124,6 +124,7 @@ def historiaExamenesView(request):
 
 def historia1View(request):
     print("Entre Ajax de Historia1View")
+
     form = historiaForm(request.POST)
     print(form)
     data1 = {}
@@ -143,6 +144,7 @@ def historia1View(request):
 
 def historiaView(request):
     print("Entre por el view historiaView")
+
     form = historiaForm(request.POST)
 
     if request.method == 'POST':
@@ -349,8 +351,9 @@ class nuevoView(TemplateView):
 
        # return JsonResponse(data, safe=False)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, documento, **kwargs):
         print("Entre a Contexto")
+        print (documento)
         context = super().get_context_data(**kwargs)
         context['title'] = 'Mi gran Template'
         context['form']  = historiaForm

@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 
 
+
+
 class Servicios(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=30)
@@ -13,7 +15,7 @@ class Servicios(models.Model):
 class EspecialidadesMedicos(models.Model):
     id = models.AutoField(primary_key=True)
     id_especialidad = models.ForeignKey('Especialidades', on_delete=models.PROTECT, null=True)
-    id_medico = models.ForeignKey('Medicos', on_delete = models.PROTECT, null = True)
+    id_medico = models.ForeignKey('planta.Planta', on_delete = models.PROTECT, null = True)
 
     def __integer__(self):
         return self.id_medico
