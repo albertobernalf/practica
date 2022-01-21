@@ -121,7 +121,22 @@ def validaAcceso(request):
     context['documento'] = username
     print (context['documento'])
 
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    cur = miConexion.cursor()
+    comando = "SELECT id ,nombre FROM planta_tiposPlanta"
+    cur.execute(comando)
+    print(comando)
 
+    perfiles = []
+    context = {}
+
+    for id, nombre in cur.fetchall():
+        perfiles.append({'id': id, 'nombre': nombre})
+
+    miConexion.close()
+    print(perfiles)
+
+    context['Perfiles'] = perfiles
 
     miConexion0 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
     cur0 = miConexion0.cursor()
@@ -136,18 +151,14 @@ def validaAcceso(request):
 
     if planta == []:
 
-        dato1 = []
-        dato1.append({'Error': "Personal No existe ! "})
-        dato = {"Personal No existe ! "}
 
-
+        context['Error'] = "Personal No existe ! "
 
 
         miConexion0.close()
-        print ("devuelvo dato = ", dato1)
 
-        return render(request, "accesoPrincipal.html", dato1)
-        #return HttpResponse("Personal No existe ! ")
+        return render(request, "accesoPrincipal.html", context)
+
     else:
         miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
         cur1 = miConexion1.cursor()
@@ -161,7 +172,8 @@ def validaAcceso(request):
 
         if plantaContrasena == []:
             miConexion1.close()
-            return HttpResponse("Contraseña invalida ! ")
+            context['Error'] = "Contraseña invalida ! "
+            return render(request, "accesoPrincipal.html", context)
         else:
 
 
@@ -180,7 +192,10 @@ def validaAcceso(request):
                 miConexion0.close()
                 miConexion1.close()
                 miConexion2.close()
-                return HttpResponse("Perfil No autorizado ! ")
+                context['Error'] = "Perfil No autorizado ! "
+                return render(request, "accesoPrincipal.html", context)
+
+
             else:
                 print("passe")
 
