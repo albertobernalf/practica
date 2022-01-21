@@ -106,7 +106,10 @@ def accesoEspecialidadMedico(request, documento):
 
     return render(request, "accesoEspecialidadMedico.html", context)
 
+def contrasena(request, documento):
 
+    print("Entre cambio contrasena")
+    print(documento)
 
 def validaAcceso(request):
     print("Hola Entre a validar el acceso Principal")
@@ -152,7 +155,7 @@ def validaAcceso(request):
     if planta == []:
 
 
-        context['Error'] = "Personal No existe ! "
+        context['Error'] = "Personal invalido ! "
 
 
         miConexion0.close()

@@ -28,6 +28,7 @@ urlpatterns = [
     path('menu/', views.menu),
     path('menuAcceso/', views.menuAcceso),
     path('menuAcceso/validaAcceso/', views.validaAcceso),
+    path('contrasena/<str:documento>', views.contrasena),
     path('accesoEspecialidadMedico/<str:documento>', views.accesoEspecialidadMedico),
     path('salir/', views.salir),
     path('salir/validaAcceso/', views.validaAcceso),
