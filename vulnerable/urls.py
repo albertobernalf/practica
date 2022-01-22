@@ -27,9 +27,14 @@ urlpatterns = [
     path('acceso/', views.acceso),
     path('menu/', views.menu),
     path('menuAcceso/', views.menuAcceso),
+    path('validaAcceso/', views.validaAcceso),
     path('menuAcceso/validaAcceso/', views.validaAcceso),
     path('contrasena/<str:documento>', views.contrasena),
     path('accesoEspecialidadMedico/<str:documento>', views.accesoEspecialidadMedico),
+    path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>', views.validaPassword),
+    path('findOne/<str:username> , <str:password> /', views.Modal),
+
+
     path('salir/', views.salir),
     path('salir/validaAcceso/', views.validaAcceso),
     path('camara/', views.camara),
@@ -37,6 +42,7 @@ urlpatterns = [
     path('reconocerAudio/', views.reconocerAudio),
     path('reproduceAudio/', views.reproduceAudio),
     path('accesoEspecialidadMedico/historiaView/<str:documento>', viewsClinico.nuevoView.as_view()),
+
     path('historia1View/', viewsClinico.historia1View),
     path('historiaExamenesView/', viewsClinico.historiaExamenesView),
     path('consecutivo_folios/', viewsClinico.consecutivo_folios),

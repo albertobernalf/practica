@@ -20,6 +20,30 @@ console.log(form)
 console.log(form2)
 
 
+// Para la ventana Moddal
+
+ $('.eBtn').on('click',function(event)
+	        {
+			event.preventDefault();
+			var href = $(this).attr('href');
+			console.log("Entre Ventana Modal");
+
+			$.get(href, function(UsuariosHc,status)
+			 {
+			 alert("entre");
+
+
+                $('#username').val(UsuariosHc.username);
+				$('#password').val(UsuariosHc.password);
+
+				}
+			);
+
+			 $('#exampleModal').modal({show:true});
+
+			  });
+
+
 
 form.addEventListener('submit', e=>{
 
@@ -251,26 +275,3 @@ $("#btnFolio").click(function(){
 });
 
 
-
-// Para la ventana Moddal
-
- $('.eBtn').on('click',function(event)
-	        {
-			event.preventDefault();
-			var href = $(this).attr('href');
-			console.log("Entre Ventana Modal");
-
-			$.get(href, function(UsuariosHc,status)
-			 {
-			 alert("entre");
-
-
-                $('#usuario').val(UsuariosHc.usuario);
-				$('#contrasena').val(UsuariosHc.contrasena);
-				$('#nombre').val(UsuariosHc.nombre);
-				}
-			);
-
-			 $('#exampleModal').modal({show:true});
-
-			  });

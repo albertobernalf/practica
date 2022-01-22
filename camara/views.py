@@ -6,6 +6,7 @@ import numpy as np
 import cv2
 import uuid
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse
 import os
 import speech_recognition as sr
 import time
@@ -105,6 +106,85 @@ def accesoEspecialidadMedico(request, documento):
     context['documento'] = documento
 
     return render(request, "accesoEspecialidadMedico.html", context)
+
+def Modal(request, username, password):
+
+        print("Entre a Modal")
+        print(username)
+        print(password)
+
+        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+        cur1 = miConexion1.cursor()
+        comando = "SELECT documento,contrasena FROM planta_planta WHERE documento = '" + str(username) + "'"
+        print(comando)
+        cur1.execute(comando)
+
+        UsuariosHc = {}
+
+        for documento, contrasena in cur1.fetchall():
+            UsuariosHc = {'username': documento, 'contrasena': contrasena}
+
+        miConexion1.close()
+        print(UsuariosHc)
+        return JsonResponse(UsuariosHc, safe=False)
+        # return HttpResponse(UsuariosHc)
+
+
+def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNueva2):
+    print("Entre ValidaPassword" )
+    username = request.POST["username"]
+    contrasenaAnt = request.POST["contrasenaAnt"]
+    contrasenaNueva = request.POST["contrasenaNueva"]
+    contrasenaNueva2 = request.POST["contrasenaNueva2"]
+
+    print(username)
+    print(contrasenaAnt)
+    print(contrasenaNueva)
+    print(contrasenaNueva2)
+
+    miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    cur1 = miConexion1.cursor()
+    comando = "SELECT documento,contrasena FROM planta_planta WHERE documento = '" + str(username) + "'"
+    print(comando)
+    cur1.execute(comando)
+
+    UsuariosHc = []
+    context = {}
+
+    for documento, contrasena in cur1.fetchall():
+        UsuariosHc = {'username': documento, 'contrasena': contrasena}
+
+    miConexion1.close()
+    print(UsuariosHc)
+
+    if UsuariosHc == []:
+
+
+        context['Error'] = "Personal invalido ! "
+        print(context)
+
+
+        return JsonResponse(context, safe=False)
+        #return render(request, "accesoPrincipal.html", context)
+
+    else:
+        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+        cur1 = miConexion1.cursor()
+        comando = "UPDATE planta_planta SET contrasena = '" +  str(contrasenaNueva) + "' WHERE documento = '" + str(username) + "'"
+        print(comando)
+        cur1.execute(comando)
+        miConexion1.commit()
+        miConexion1.close()
+        context['Error'] = "Contraseña Actualizada ! "
+        print(context)
+        return JsonResponse(context, safe=False)
+        #return render(request, "accesoPrincipal.html", context)
+
+
+    #return JsonResponse(UsuariosHc, safe=False)
+
+
+
 
 def contrasena(request, documento):
 

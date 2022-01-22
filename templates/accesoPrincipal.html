@@ -27,7 +27,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel">Actualiza
-										Usuario</h5>
+										Contraseña</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
@@ -60,7 +60,9 @@
 
 
 								</div>
+
 								<div class="modal-footer">
+									<span style="color:blue">{{Error}}</span>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">Close</button>
 									<input type="button" class="btn btn-primary" value="save" onclick="Agrabar1()">
@@ -72,7 +74,7 @@
 			</div>
 
 
-		</div>
+	</div>
 
 
 
@@ -119,7 +121,7 @@
 
 
 
-<form action="validaAcceso/" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+<form action="/validaAcceso/" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
   <div class="form-row">
 
     <label class="required" for="id_username">Username:</label> <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
@@ -146,7 +148,7 @@
 
    <!--  <label class="required" for="id_perfil">Perfil:</label> <input type="text" name="perfil" autofocus="" autocapitalize="none" autocomplete="perfil" maxlength="150" required="" id="id_perfil">  -->
   </div>
-     <span style="color:blue">{{Error}}</span>
+     <span id="error"  name = "error" style="color:blue">{{Error}}</span>
 
 
   <div class="submit-row">
@@ -161,7 +163,7 @@
         </div>
         <!-- END Content -->
         <div id="footer">
-	<!--		<a href="/contrasena/{{context.documento}}" role="button" class="btn btn-primary eBtn" data-toggle="modal" onclick="$('#exampleModal').modal('show')"> Cambio Contrasena</a> -->
+	<!--		<a  href="/findOne/19456673 ,75AAbb??" role="button" class="btn btn-primary eBtn" data-toggle="modal" onclick="$('#exampleModal').modal('show')"> Cambio Contrasena</a> -->
 
 		</div>
       </div>
@@ -169,7 +171,49 @@
 </div>
 <!-- END Container -->
 
+<script>
 
+  function Agrabar1()
+{
+
+	var envios = new FormData();
+
+
+
+
+	var username = document.getElementById("usuario").value;
+
+	var contrasenaAnt = document.getElementById("contrasenaAnt").value;
+	var contrasenaNueva = document.getElementById("contrasenaNueva").value;
+	var contrasenaNueva2 = document.getElementById("contrasenaNueva2").value;
+
+
+
+
+<!--
+window.location.pathname,
+-->
+
+	$.ajax({
+		type: 'POST',
+    	url: '/grabar1/username,contrasenaAnt,contrasenaNueva,contrasenaNueva2',
+		data: {'username':username,'contrasenaAnt':contrasenaAnt, 'contrasenaNueva':contrasenaNueva, 'contrasenaNueva2': contrasenaNueva2},
+		success: function (respuesta) {
+
+
+		alert(respuesta);
+            alert("Ya con BAse de datos");
+            	document.getElementById("error").innerHTML = "ya trabaje con Baswe d edatos";
+			$('#exampleModal1').modal().hide();
+			 window.location.reload();
+             $('#mensaje1').val(respuesta);
+
+                    },
+	   		    error: function (request, status, error) {
+	   	    	}
+	});
+};
+</script>
 
 
 {% endblock %}
