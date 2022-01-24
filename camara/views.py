@@ -141,6 +141,15 @@ def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNu
     print(contrasenaAnt)
     print(contrasenaNueva)
     print(contrasenaNueva2)
+    context = {}
+
+    if (contrasenaNueva2 != contrasenaNueva):
+        dato = "No coinciden las contraseñas ! "
+        context['Error'] = "No coincideln las contraseñas ! "
+        print(context)
+
+        return HttpResponse(dato)
+
 
     miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
     cur1 = miConexion1.cursor()
@@ -149,7 +158,6 @@ def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNu
     cur1.execute(comando)
 
     UsuariosHc = []
-    context = {}
 
     for documento, contrasena in cur1.fetchall():
         UsuariosHc = {'username': documento, 'contrasena': contrasena}
@@ -159,26 +167,47 @@ def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNu
 
     if UsuariosHc == []:
 
-
+        dato = "Personal invalido ! "
         context['Error'] = "Personal invalido ! "
         print(context)
 
-
-        return JsonResponse(context, safe=False)
+        return HttpResponse(dato)
         #return render(request, "accesoPrincipal.html", context)
 
     else:
         miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
         cur1 = miConexion1.cursor()
-        comando = "UPDATE planta_planta SET contrasena = '" +  str(contrasenaNueva) + "' WHERE documento = '" + str(username) + "'"
+        comando = "SELECT documento,contrasena FROM planta_planta WHERE documento = '" + str(username) + "' AND contrasena = '" + str(contrasenaAnt) + "'"
         print(comando)
         cur1.execute(comando)
-        miConexion1.commit()
+
+        ContrasenaHc = []
+        for documento, contrasena in cur1.fetchall():
+            ContrasenaHc = {'username': documento, 'contrasena': contrasena}
         miConexion1.close()
-        context['Error'] = "Contraseña Actualizada ! "
-        print(context)
-        return JsonResponse(context, safe=False)
-        #return render(request, "accesoPrincipal.html", context)
+
+        if ContrasenaHc == []:
+            dato = "Contraseña Invalida ! "
+            context['Error'] = "Contraseña Invalida ! "
+            print(context)
+
+            return HttpResponse(dato)
+
+        else:
+
+            miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+            cur1 = miConexion1.cursor()
+            comando = "UPDATE planta_planta SET contrasena = '" +  str(contrasenaNueva) + "' WHERE documento = '" + str(username) + "'"
+            print(comando)
+            cur1.execute(comando)
+            miConexion1.commit()
+            miConexion1.close()
+            context['Error'] = "Contraseña Actualizada ! "
+            dato = "Contraseña Actualizada !"
+            print(context)
+            #return HttpResponse(context, safe=False)
+            return HttpResponse(dato)
+            #return render(request, "accesoPrincipal.html", context)
 
 
     #return JsonResponse(UsuariosHc, safe=False)

@@ -62,7 +62,7 @@
 								</div>
 
 								<div class="modal-footer">
-									<span style="color:blue">{{Error}}</span>
+									<span id="mensaje" name = "mensaje" style="color:blue">{{Error}}</span>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">Close</button>
 									<input type="button" class="btn btn-primary" value="save" onclick="Agrabar1()">
@@ -201,12 +201,14 @@ window.location.pathname,
 		success: function (respuesta) {
 
 
-		alert(respuesta);
-            alert("Ya con BAse de datos");
-            	document.getElementById("error").innerHTML = "ya trabaje con Baswe d edatos";
+
+
+            	document.getElementById("mensaje").innerHTML = respuesta;
+            	  $('#error').val(respuesta);
 			$('#exampleModal1').modal().hide();
-			 window.location.reload();
-             $('#mensaje1').val(respuesta);
+			<!-- window.location.reload(); -->
+             $('#error').val(respuesta);
+             	document.getElementById("error").innerHTML = respuesta;
 
                     },
 	   		    error: function (request, status, error) {
