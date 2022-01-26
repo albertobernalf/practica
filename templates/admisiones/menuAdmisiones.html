@@ -28,23 +28,41 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
        <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="#">Mision</a>
-
-              <li class="nav-item dropdown">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+               <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Facturacion
+         Admisiones
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Facturacion</a>
-          <a class="dropdown-item" href="/manejoLuz#">Remisiones</a>
-          <a class="dropdown-item" href="#">Radicacion de Facturas</a>
-          <a class="dropdown-item" href="#">Rips</a>
+            <a class="dropdown-item" href="/admHospProvisional/documento={{documento}}">Triage</a>
+          <a class="dropdown-item" href="/admHospProvisional/documento={{documento}}">Hospitalizacion</a>
+          <a class="dropdown-item" href="/manejoLuz#">Urgencias</a>
+          <a class="dropdown-item" href="#">Ambulatorios</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+
+
+             <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mecanicos Pacientes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Manejo cama</a>
+          <a class="dropdown-item" href="/manejoLuz#">Luz de habitacion</a>
+          <a class="dropdown-item" href="#">Televisor</a>
+          <a class="dropdown-item" href="#">Calefaccion</a>
+            <a class="dropdown-item" href="/ambienteMusical#">Ambientacion Musical</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
 
-                          <li class="nav-item dropdown">
+
+                        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Informes
@@ -61,12 +79,17 @@
       </li>
              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
 
-
-            <a class="nav-link" href="/salir">Salir</a>
+      </li>
+             <a class="nav-link" href="/salir">Salir</a>
 
       </div>
     </div>
   </div>
+    <form class="form-inline my-2 my-lg-0">
+
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="button">CLINICA PRINCIPAL</button>
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="button">ADMISIONES - HOSPITALIZACION</button>
+             </form>
 </nav>
 
 {% block content  %}

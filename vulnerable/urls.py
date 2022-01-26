@@ -49,7 +49,7 @@ urlpatterns = [
     path('motivoSeñas/', viewsClinico.motivoSeñas),
     path('subjetivoSeñas/', viewsClinico.subjetivoSeñas),
     path('motivoInvidente/', viewsClinico.motivoInvidente),
-    path('resMotivoInvidente/', viewsClinico.s),
+   # path('resMotivoInvidente/', viewsClinico.s),
     path('reconocerAudio/', views.reconocerAudio),
     path('reproduceAudio/', views.reproduceAudio),
     path('accesoEspecialidadMedico/<str:documento>', views.accesoEspecialidadMedico),
@@ -63,6 +63,8 @@ urlpatterns = [
     path('leeAudio/', views.leeAudio),
 
     # Admisiones
+
+    path('admHospProvisional/<str:documento>', views.admHospProvisional),
 
 
 

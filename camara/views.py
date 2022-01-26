@@ -52,6 +52,16 @@ def menu(request):
     return render(request, "home1.html")
 
 
+def admHospProvisional(request,documento):
+    print("admHospProvisional")
+    print(documento)
+    context = {}
+    context['documento'] = documento
+
+
+
+    return render(request, "admisiones/panelHospAdmisiones.html", context)
+
 def acceso(request):
     print("Ingreso a acceso")
     return render(request, "home.html")
@@ -240,7 +250,7 @@ def validaAcceso(request):
     print(comando)
 
     perfiles = []
-    context = {}
+
 
     for id, nombre in cur.fetchall():
         perfiles.append({'id': id, 'nombre': nombre})
@@ -317,32 +327,33 @@ def validaAcceso(request):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuMedico.html", context)
+                    print("voy para ")
+                    return render(request, "clinico/menuMedico.html", context)
                 if (perfil[0] == 2):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuEnfermero.html", context)
+                    return render(request, "clinico/menuEnfermero.html", context)
                 if (perfil[0] == 3):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuAuxiliar.html", context)
+                    return render(request, "clinico/menuAuxiliar.html", context)
                 if (perfil[0] == 4):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuCitasMedicas.html")
+                    return render(request, "citasMedicas/menuCitasMedicas.html")
                 if (perfil[0] == 5):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuFacturacion.html", context)
+                    return render(request, "facturacion/menuFacturacion.html", context)
                 if (perfil[0] == 6):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "menuAdmisiones.html", context)
+                    return render(request, "admisiones/menuAdmisiones.html", context)
 
     return render(request, "menuMedico.html",context)
 
