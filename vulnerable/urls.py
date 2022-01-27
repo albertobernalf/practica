@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from camara import views
+
+from admisiones import views as viewsAdmisiones
+
 from django.conf  import settings
 from django.conf.urls.static import  static
 from clinico import views as viewsClinico
@@ -29,14 +32,9 @@ urlpatterns = [
     # Acceso al Programa
 
     path('menu/', views.menu),
-    path('menuAcceso/', views.menuAcceso),
-    path('validaAcceso/', views.validaAcceso),
-    path('menuAcceso/validaAcceso/', views.validaAcceso),
+    #path('menuAcceso/validaAcceso/', views.validaAcceso),
     path('contrasena/<str:documento>', views.contrasena),
-    path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>',views.validaPassword),
-    path('findOne/<str:username> , <str:password> /', views.Modal),
-    path('salir/', views.salir),
-    path('salir/validaAcceso/', views.validaAcceso),
+    #path('salir/validaAcceso/', views.validaAcceso),
 
 
     # HISTORIA CLINICA
@@ -64,9 +62,13 @@ urlpatterns = [
 
     # Admisiones
 
-    path('admHospProvisional/<str:documento>', views.admHospProvisional),
+    path('admHospProvisional/<str:Documento>,<str:Perfil>,<str:Sede>,<str:NombreSede>', views.admHospProvisional),
 
-
+    path('menuAcceso/',viewsAdmisiones.menuAcceso),
+    path('validaAcceso/', viewsAdmisiones.validaAcceso),
+    path('salir/', viewsAdmisiones.salir),
+    path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>',  viewsAdmisiones.validaPassword),
+    path('findOne/<str:username> , <str:password> /', viewsAdmisiones.Modal),
 
     # Facturacion
 

@@ -13,14 +13,14 @@ class tiposPlantaAdmin(admin.ModelAdmin):
 
 class perfilesPlantaAdmin(admin.ModelAdmin):
 
-        list_display = ("id", "id_tipo_doc", "documento", "id_perfilPlanta")
-        search_fields =  ("id", "id_tipo_doc", "documento", "id_perfilPlanta")
+        list_display = ("id", "sedesClinica", "planta", "tiposPlanta","fechaRegistro","usuarioRegistro")
+        search_fields =  ("id", "sedesClinica", "planta", "tiposPlanta","fechaRegistro","usuarioRegistro")
 
 
 class plantaAdmin(admin.ModelAdmin):
 
-    list_display = ("id","id_tipo_doc","documento","nombre","genero")
-    search_fields = ("id","tid_ipo_doc","documento","nombre","genero")
+    list_display = ("id","sedesClinica","tipoDoc","documento","nombre","genero","direccion","telefono","fechaRegistro","usuarioRegistro")
+    search_fields = ("id","sedesClinica","tipoDoc","documento","nombre","genero","direccion","telefono","fechaRegistro","usuarioRegistro")
 
 
 admin.site.register(TiposPlanta, tiposPlantaAdmin)
