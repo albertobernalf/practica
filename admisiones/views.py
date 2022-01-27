@@ -374,7 +374,7 @@ def Modal(request, username, password):
         # return HttpResponse(UsuariosHc)
 
 
-#def buscarAdmision(request, BusHabitacion, BusTipoDoc, BusDocumento, BusPaciente, BusDesde, BusHasta):
+
 def buscarAdmision(request):
 
     print("Entre Buscar Admision" )
@@ -383,10 +383,40 @@ def buscarAdmision(request):
     BusDocumento = request.POST["BusDocumento"]
     BusDesde = request.POST["BusDesde"]
     BusHasta = request.POST["BusHasta"]
+    Sede = request.POST["Sede"]
+    Servicio = request.POST["Servicio"]
 
     print(BusHabitacion)
     print(BusTipoDoc)
     print(BusDocumento)
     print(BusDesde)
     print(BusHasta)
+    print (Sede)
+    print(Servicio)
+
+    ingresos = []
     context = {}
+
+    miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    cur1 = miConexion1.cursor()
+    comando = "SELECT i.tipoDoc_id tipoDoc, i.documento documento, u.nombre  nombre , i.consec consec FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento  = u.documento AND u.documento = '" + str(BusDocumento) + "' AND i.sedesClinica_id = '" + str(Sede) + "'" + " AND serviciosActual_id = '" + str(Servicio) + "'  AND i.dependenciasActual_id = dep.id AND dep.nombre = '" + str(BusHabitacion) + "'"
+    print(comando)
+    cur1.execute(comando)
+
+
+
+    for tipoDoc, documento, nombre , consec in cur1.fetchall():
+
+        ingresos.append ({'tipoDoc' : tipoDoc, 'Documento': documento, 'Nombre': nombre , 'Consec': consec})
+
+    miConexion1.close()
+    print(ingresos)
+    context['Ingresos'] = ingresos
+
+
+
+
+    return render(request, "admisiones/panelHospAdmisionesBravo.html", context)
+
+
+

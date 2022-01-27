@@ -14,95 +14,23 @@
                 <div style="height: 100px; ">
                     <table class="table  " style="height: 100px; background-color:LightGray; border: 2px solid black; border-radius: 100px; width:99%;">
 
-
-                        <tr style="high:70%">
-                        <!-- iNGRESAR UN FORMULARIO AQUIP -->
-
-                        <form action="/buscarAdmision/" method="post" id="login-form"><input type="hidden"
-                                                                                       name="csrfmiddlewaretoken"
-                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
-                        <div class="form-row">
-                            <label class="required" for="busHabitacion">Habitacion:</label>
-
-                          <input type = "text"  id="busHabitacion"  name="busHabitacion"          ></input>
-
-                        </div>
-
-                            <div class="form-row">
-                            <label class="required" for="busTipoDoc">TipoDoc:</label>
-
-                          <input type = "text"  id="busTipoDoc"  name="busTipoDoc"          ></input>
-
-                        </div>
-
-                              </div>
-
-                            <div class="form-row">
-                            <label class="required" for="busDocumento">Documento:</label>
-
-                          <input type = "text"  id="busDocumento"  name="busDocumento"          ></input>
-
-                        </div>
-
-
-
-                            <div class="form-row">
-                            <label class="required" for="busDocumento">Paciente:</label>
-
-                          <input type = "text"  id="busPaciente"  name="busPaciente"          ></input>
-
-                        </div>
-
-
-                            <div class="form-row">
-                            <label class="required" for="busDesde">Desde:</label>
-
-                          <input type = "text"  id="busDesde"  name="busDesde"          ></input>
-
-                        </div>
-
-                    <div class="form-row">
-                            <label class="required" for="busHasta">Desde:</label>
-
-                          <input type = "text"  id="busHasta"  name="busHasta"    ></input>
-
-                        </div>
-
-
-                        <div class="form-row">
-
-
-                            <input type="hidden" id= "Sede" name="Sede" value="{{Sede}}">
-                            <input type="hidden" id= "Servicio" name="Sede" value="{{Servicio}}">
-                        </div>
-
-
-
-
-
-
-                        <span id="error" name="error" style="color:blue">{{Error}}</span>
-
-
-                        <div class="submit-row">
-                            <input type="submit" value="BUSCAR">
-                        </div>
-                    </form>
-
-                        <tr />
-
-                        <!-- fim formulario -->
-
                         <tr style="high:30%">
+                            <td> Por Habitacion: <input type = "text"  id="busHabitacion"  name="busHabitacion"          ></input>  </td>
+                            <td> Tipo Doc: <input type = "text"  id="busTipoDoc"  name="busTipoDoc"          ></input></td>
+                            <td> Documento: <input type = "text"  id="busDocumento"  name="busDocumento"          ></input></td>
+                            <td> NombrePaciente: <input type = "text"  id="busPaciente"  name="busPaciente"          ></input></td>
 
-
-
-
-
-
-
+                            <td> Desde: <input type = "text"  id="busDesde"  name="busDesde"          ></input></td>
+                            <td> Hasta: <input type = "text"  id="busHasta"  name="busHasta"          ></input></td>
                         </tr>
 
+                        <tr style="high:30%">
+                            <td> Por Especialidad:</td>
+                            <td> Por Medico:</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> <input type = "button"  id="btnBuscar"  name="btnBuscar" value = "BUSCAR"></input></td>
+                        </tr>
 
 
                     </table>
@@ -126,7 +54,7 @@
 
                         <tr>
 
-                     <td>dato_1</td>
+                     <td>{Ingresos}}</td>
                              <td>dato_2</td>
                              <td>dato_3</td>
                         </tr>
