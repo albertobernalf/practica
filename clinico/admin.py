@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from clinico.models import Medicos, Especialidades , TiposExamen, Examenes, Historia, HistoriaExamenes, HistoriaResultados, EspecialidadesMedicos, Servicios
+from clinico.models import Medicos, Especialidades , TiposExamen, Examenes, Historia, HistoriaExamenes, HistoriaResultados, EspecialidadesMedicos, Servicios, Diagnosticos, EstadosSalida
 
 
 class especialidadesAdmin(admin.ModelAdmin):
@@ -57,6 +57,16 @@ class especialidadesMedicosAdmin(admin.ModelAdmin):
         list_display = ("id", "id_especialidad", "id_medico")
         search_fields = ("id", "id_especialidad", "id_medico")
 
+class diagnosticosAdmin(admin.ModelAdmin):
+            list_display = ("id", "nombre")
+            search_fields = ("id", "nombre")
+
+
+class estadosSalidaAdmin(admin.ModelAdmin):
+    list_display = ("id", "nombre")
+    search_fields = ("id", "nombre")
+
+
 
 #admin.site.register(Medicos, medicosAdmin)
 admin.site.register(Especialidades, especialidadesAdmin)
@@ -67,5 +77,7 @@ admin.site.register(HistoriaExamenes, historiaExamenesAdmin)
 admin.site.register(HistoriaResultados, historiaResultadosAdmin)
 admin.site.register(Servicios, serviciosAdmin)
 admin.site.register(EspecialidadesMedicos, especialidadesMedicosAdmin)
+admin.site.register(Diagnosticos, diagnosticosAdmin)
+admin.site.register(EstadosSalida, estadosSalidaAdmin)
 
 

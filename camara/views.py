@@ -52,7 +52,7 @@ def menu(request):
     return render(request, "home1.html")
 
 
-def admHospProvisional(request,Documento, Perfil, Sede, NombreSede):
+def admHospProvisional(request,Documento, Perfil, Sede, NombreSede, Servicio):
     print("admHospProvisional")
     print(Documento)
     context = {}
@@ -60,6 +60,7 @@ def admHospProvisional(request,Documento, Perfil, Sede, NombreSede):
     context['Perfil'] = Perfil
     context['Sede'] = Sede
     context['NombreSede'] = NombreSede
+    context['Servicio'] = Servicio
 
 
 

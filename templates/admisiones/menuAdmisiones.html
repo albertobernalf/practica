@@ -36,9 +36,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/admHospProvisional/documento={{documento}}">Triage</a>
-          <a class="dropdown-item" href="/admHospProvisional/Documento={{Documento}},Perfil={{Perfil}} , Sede={{Sede}} , NombreSede={{NombreSede}}">Hospitalizacion</a>
+          <a class="dropdown-item" href="/admHospProvisional/Documento={{Documento}},Perfil={{Perfil}} , Sede={{Sede}} , NombreSede={{NombreSede}} , Servicio=1}">Hospitalizacion</a>
           <a class="dropdown-item" href="/manejoLuz#">Urgencias</a>
-          <a class="dropdown-item" href="#">Ambulatorios</a>
 
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
@@ -520,6 +519,37 @@ $("#btnmotivoInvidente").click(function(){
 
  });
 
+
+
+    $("#btnBuscar").click(function(){
+        alert("Entre a buscar");
+
+        var busHabitacion = document.getElementById("busHabitacion").value
+         var busTipoDoc = document.getElementById("busTipoDoc").value
+          var busDocumento = document.getElementById("busDocumento").value
+           var busPaciente = document.getElementById("busPaciente").value
+            var busDesde = document.getElementById("busDesde").value
+           var busHasta = document.getElementById("busHasta").value
+
+
+  		 $.ajax({
+	           url: '/buscarAdmision/',
+	           type: 'POST',
+
+	           data : {BusHabitacion:busHabitacion, BusTipoDoc: busTipoDoc ,BusDocumento: busDocumento,BusPaciente: busPaciente,BusDesde: busDesde,BusHasta:busHasta },
+	  		success: function (respuesta) {
+                     var data = JSON.parse(respuesta);
+
+
+	                    document.getElementById("id_motivo").value = data.Respuesta;
+                    },
+	   		    error: function (request, status, error) {
+
+	   			    $("#mensajes").html(" !  Reproduccion  con error !");
+	   	    	}
+
+	     });
+    });
 
 
 

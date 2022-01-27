@@ -62,15 +62,19 @@ urlpatterns = [
 
     # Admisiones
 
-    path('admHospProvisional/<str:Documento>,<str:Perfil>,<str:Sede>,<str:NombreSede>', views.admHospProvisional),
+    path('admHospProvisional/<str:Documento>,<str:Perfil>,<str:Sede>,<str:NombreSede>,<str:Servicio>', views.admHospProvisional),
 
     path('menuAcceso/',viewsAdmisiones.menuAcceso),
     path('validaAcceso/', viewsAdmisiones.validaAcceso),
     path('salir/', viewsAdmisiones.salir),
     path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>',  viewsAdmisiones.validaPassword),
     path('findOne/<str:username> , <str:password> /', viewsAdmisiones.Modal),
+   # path('buscarAdmision/<str:BusHabitacion>,<str:BusTipoDoc>,<str:BusDocumento>,<str:BusPaciente>,<str:BusDesde>,<str:BusHasta>/', viewsAdmisiones.buscarAdmision),
+    path('buscarAdmision/', viewsAdmisiones.buscarAdmision),
 
-    # Facturacion
+
+
+# Facturacion
 
 
 

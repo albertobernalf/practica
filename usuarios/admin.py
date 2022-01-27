@@ -7,19 +7,20 @@ from usuarios.models import TiposDocumento, TiposUsuario, Usuarios
 
 class tiposDocumentoAdmin(admin.ModelAdmin):
 
-    list_display=("id","abreviatura","nombre")
-    search_fields =("id","abreviatura","nombre")
+    list_display=("id","abreviatura","nombre","fechaRegistro","usuarioRegistro")
+    search_fields =("id","abreviatura","nombre","fechaRegistro","usuarioRegistro")
+
 
 class tiposUsuarioAdmin(admin.ModelAdmin):
 
-        list_display = ("id", "nombre")
-        search_fields = ("id", "nombre")
+        list_display = ("id", "nombre","fechaRegistro","usuarioRegistro")
+        search_fields = ("id", "nombre","fechaRegistro","usuarioRegistro")
 
 
 class usuariosAdmin(admin.ModelAdmin):
 
-    list_display = ("id","id_tipo_doc","documento","nombre","genero")
-    search_fields = ("id","tid_ipo_doc","documento","nombre","genero")
+    list_display = ("id","tipoDoc","documento","nombre","genero","centrosC","tiposUsuario","direccion","telefono","contacto")
+    search_fields =("id","tipoDoc","documento","nombre","genero","centrosC","tiposUsuario","direccion","telefono","contacto")
 
 
 admin.site.register(TiposDocumento, tiposDocumentoAdmin)

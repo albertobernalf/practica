@@ -373,3 +373,20 @@ def Modal(request, username, password):
         return JsonResponse(UsuariosHc, safe=False)
         # return HttpResponse(UsuariosHc)
 
+
+#def buscarAdmision(request, BusHabitacion, BusTipoDoc, BusDocumento, BusPaciente, BusDesde, BusHasta):
+def buscarAdmision(request):
+
+    print("Entre Buscar Admision" )
+    BusHabitacion = request.POST["BusHabitacion"]
+    BusTipoDoc = request.POST["BusTipoDoc"]
+    BusDocumento = request.POST["BusDocumento"]
+    BusDesde = request.POST["BusDesde"]
+    BusHasta = request.POST["BusHasta"]
+
+    print(BusHabitacion)
+    print(BusTipoDoc)
+    print(BusDocumento)
+    print(BusDesde)
+    print(BusHasta)
+    context = {}

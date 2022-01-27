@@ -8,18 +8,20 @@
        </hr>
 
     <div class="row">
-        <div   class="col-sm-1" style="background-color:LightGray;"> </div>
-        <div   class="col-lg-11" style="background-color:LightGray;">
+
+        <div   class="col-lg-12" style="background-color:LightGray;">
            <div class="card-block">
                 <div style="height: 100px; ">
                     <table class="table  " style="height: 100px; background-color:LightGray; border: 2px solid black; border-radius: 100px; width:99%;">
 
                         <tr style="high:30%">
-                            <td> Por Habitacion:</td>
-                            <td> Tipo Doc:</td>
-                            <td> Documento:</td>
-                            <td> Desde:</td>
-                            <td> Hasta:</td>
+                            <td> Por Habitacion: <input type = "text"  id="busHabitacion"  name="busHabitacion"          ></input>  </td>
+                            <td> Tipo Doc: <input type = "text"  id="busTipoDoc"  name="busTipoDoc"          ></input></td>
+                            <td> Documento: <input type = "text"  id="busDocumento"  name="busDocumento"          ></input></td>
+                            <td> NombrePaciente: <input type = "text"  id="busPaciente"  name="busPaciente"          ></input></td>
+
+                            <td> Desde: <input type = "text"  id="busDesde"  name="busDesde"          ></input></td>
+                            <td> Hasta: <input type = "text"  id="busHasta"  name="busHasta"          ></input></td>
                         </tr>
 
                         <tr style="high:30%">
@@ -27,7 +29,7 @@
                             <td> Por Medico:</td>
                             <td> </td>
                             <td> </td>
-                            <td> </td>
+                            <td> <input type = "button"  id="btnBuscar"  name="btnBuscar" value = "BUSCAR"></input></td>
                         </tr>
 
 
@@ -76,7 +78,8 @@
                      <td>{{Documento}}</td>
                              <td>{{Sede}}</td>
                              <td>{{Perfil}}</td>
-                                 <td>{{NombreSede.nombre}}</td>
+                                 <td>{{NombreSede}}</td>
+                                 <td>{{Servicio}}</td>
                         </tr>
 
 
@@ -154,3 +157,4 @@
 
 
 {% endblock %}
+

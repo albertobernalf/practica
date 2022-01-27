@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -114,3 +115,24 @@ class HistoriaResultados(models.Model):
 
                     def __str__(self):
                         return self.resultado
+
+
+class Diagnosticos(models.Model):
+    id = models.AutoField(primary_key=True)
+    cie10  = models.CharField(max_length=15, default='')
+    nombre = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=80)
+    fechaRegistro = models.DateTimeField(default=now, editable=False)
+    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+    estadoReg = models.CharField(max_length=1, default='A', editable=False)
+
+    def __str__(self):
+        return self.nombre
+
+
+class EstadosSalida(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre
