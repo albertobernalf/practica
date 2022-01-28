@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, TemplateView, View
 import pygame.mixer
 from pygame.mixer import Sound
 
-from signal import pause
+#from signal import pause
 
 # Create your views here.
 

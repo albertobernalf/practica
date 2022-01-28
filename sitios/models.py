@@ -14,7 +14,7 @@ class SedesClinica(models.Model):
     telefono = models.CharField(max_length=20)
     contacto = models.CharField(max_length=50)
     fechaRegistro = models.DateTimeField(default=now, editable=False)
-    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+ #   usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1,default='A', editable=False)
 
     def __str__(self):
@@ -26,7 +26,7 @@ class Departamentos(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     fechaRegistro = models.DateTimeField(default=now, editable=False)
-    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+  #  usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Ciudades(models.Model):
         departamentos = models.ForeignKey('sitios.Departamentos', default=1, on_delete=models.PROTECT, null=True)
         nombre = models.CharField(max_length=50)
         fechaRegistro = models.DateTimeField(default=now, editable=False)
-        usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+   #     usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
         estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
         def __str__(self):
@@ -53,7 +53,7 @@ class Centros(models.Model):
         telefono = models.CharField(max_length=20)
         contacto = models.CharField(max_length=50)
         fechaRegistro = models.DateTimeField(default=now, editable=False)
-        usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+     #   usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
         estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
 
@@ -78,7 +78,7 @@ class Dependencias(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=50)
     fechaRegistro = models.DateTimeField(default=now, editable=False)
-    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+   # usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
 
@@ -95,7 +95,7 @@ class DependenciasActual(models.Model):
     documento	= models.IntegerField()
     consec	= models.IntegerField()
     fechaRegistro = models.DateTimeField(default=now, editable=False)
-    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+  #  usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
 

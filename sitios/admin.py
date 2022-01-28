@@ -8,8 +8,8 @@ from sitios.models import Departamentos, Ciudades, Centros, SedesClinica, Depend
 class sedesClinicaAdmin(admin.ModelAdmin):
 
 
-    list_display = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro","usuarioRegistro")
-    search_fields = ("id","departamentos","ciudades", "nombre","direccion", "telefono", "contacto","fechaRegistro","usuarioRegistro")
+    list_display = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro")
+    search_fields = ("id","departamentos","ciudades", "nombre","direccion", "telefono", "contacto","fechaRegistro")
 
 
 class departamentosAdmin(admin.ModelAdmin):
@@ -25,8 +25,8 @@ class ciudadesAdmin(admin.ModelAdmin):
 
 class centrosAdmin(admin.ModelAdmin):
 
-        list_display = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro","usuarioRegistro")
-        search_fields = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro","usuarioRegistro")
+        list_display = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro")
+        search_fields = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro")
 
 
 
@@ -40,15 +40,15 @@ class dependenciasTipoAdmin(admin.ModelAdmin):
 class dependenciasAdmin(admin.ModelAdmin):
 
 
-    list_display = ("id","sedesClinica", "dependenciasTipo", "servicios", "nombre", "descripcion","fechaRegistro","usuarioRegistro")
-    search_fields = ("id","sedesClinica", "dependenciasTipo", "servicios", "nombre", "descripcion","fechaRegistro","usuarioRegistro")
+    list_display = ("id","sedesClinica", "dependenciasTipo", "servicios", "nombre", "descripcion","fechaRegistro")
+    search_fields = ("id","sedesClinica", "dependenciasTipo", "servicios", "nombre", "descripcion","fechaRegistro")
 
 
 class dependenciasActualAdmin(admin.ModelAdmin):
 
 
-    list_display = ("id","dependencias", "tipoDoc",  "nombre", "descripcion","documento","consec","fechaRegistro","usuarioRegistro")
-    search_fields = ("id","dependencias", "tipoDoc",  "nombre", "descripcion","documento","consec","fechaRegistro","usuarioRegistro")
+    list_display = ("id","dependencias", "tipoDoc",  "nombre", "descripcion","documento","consec","fechaRegistro")
+    search_fields = ("id","dependencias", "tipoDoc",  "nombre", "descripcion","documento","consec","fechaRegistro")
 
 
 

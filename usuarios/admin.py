@@ -7,14 +7,14 @@ from usuarios.models import TiposDocumento, TiposUsuario, Usuarios
 
 class tiposDocumentoAdmin(admin.ModelAdmin):
 
-    list_display=("id","abreviatura","nombre","fechaRegistro","usuarioRegistro")
-    search_fields =("id","abreviatura","nombre","fechaRegistro","usuarioRegistro")
+    list_display=("id","abreviatura","nombre","fechaRegistro")
+    search_fields =("id","abreviatura","nombre","fechaRegistro")
 
 
 class tiposUsuarioAdmin(admin.ModelAdmin):
 
-        list_display = ("id", "nombre","fechaRegistro","usuarioRegistro")
-        search_fields = ("id", "nombre","fechaRegistro","usuarioRegistro")
+        list_display = ("id", "nombre","fechaRegistro")
+        search_fields = ("id", "nombre","fechaRegistro")
 
 
 class usuariosAdmin(admin.ModelAdmin):

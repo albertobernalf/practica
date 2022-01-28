@@ -8,7 +8,7 @@ class Ingresos(models.Model):
     id           = models.AutoField(primary_key=True)
     sedesClinica = models.ForeignKey('sitios.SedesClinica', default=1, on_delete=models.PROTECT, null=True)
     tipoDoc = models.ForeignKey('usuarios.TiposDocumento', default=1, on_delete=models.PROTECT, null=True)
-    documento = models.IntegerField()
+    documento = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True, related_name='Documento')
     consec    = models.IntegerField()
     fechaIngreso = models.DateTimeField(default=now, editable=True)
     fechaSalida = models.DateTimeField(default=now, editable=True)
@@ -29,7 +29,7 @@ class Ingresos(models.Model):
     medicoSalida =  models.ForeignKey('planta.Planta', default=1, on_delete=models.PROTECT, null=True,  related_name='id8')
     salidaClinica = models.CharField(max_length=1,default='N')
     fechaRegistro = models.DateTimeField(default=now, editable=False)
-    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+    usuarioRegistro = models.ForeignKey('planta.Planta', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
 

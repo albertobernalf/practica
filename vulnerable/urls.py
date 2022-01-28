@@ -22,7 +22,7 @@ from admisiones import views as viewsAdmisiones
 from django.conf  import settings
 from django.conf.urls.static import  static
 from clinico import views as viewsClinico
-from mecanicosPacientes import views as viewsmecanicosPacientes
+#from mecanicosPacientes import views as viewsmecanicosPacientes
 
 
 urlpatterns = [
@@ -55,8 +55,8 @@ urlpatterns = [
     # Actividaes Mecanicas
 
     path('prueba/', viewsClinico.prueba),
-    path('manejoLuz/', viewsmecanicosPacientes.manejoLuz.as_view()),
-    path('ambienteMusical/', viewsmecanicosPacientes.ambienteMusical.as_view()),
+ #   path('manejoLuz/', viewsmecanicosPacientes.manejoLuz.as_view()),
+#    path('ambienteMusical/', viewsmecanicosPacientes.ambienteMusical.as_view()),
     path('camara/', views.camara),
     path('leeAudio/', views.leeAudio),
 

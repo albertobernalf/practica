@@ -123,7 +123,7 @@ class Diagnosticos(models.Model):
     nombre = models.CharField(max_length=30)
     descripcion = models.CharField(max_length=80)
     fechaRegistro = models.DateTimeField(default=now, editable=False)
-    usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
+    #usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1, default='A', editable=False)
 
     def __str__(self):
