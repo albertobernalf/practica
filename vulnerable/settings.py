@@ -64,7 +64,7 @@ ROOT_URLCONF = 'vulnerable.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/pi/EntornosPython/vulne/vulnerable/templates/'],
+        'DIRS': ['C:\\EntornosPython\\practica\\practica\\templates\\'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

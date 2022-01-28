@@ -8,7 +8,7 @@ def menuAcceso(request):
     print("Ingreso a acceso")
 
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM planta_tiposPlanta"
     cur.execute(comando)
@@ -25,7 +25,7 @@ def menuAcceso(request):
 
     context['Perfiles'] = perfiles
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM sitios_sedesClinica"
     cur.execute(comando)
@@ -70,7 +70,7 @@ def validaAcceso(request):
 
     # Consigo la sede Nombre
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT nombre   FROM sitios_sedesClinica WHERE id ='" + sede + "'"
     cur.execute(comando)
@@ -91,7 +91,7 @@ def validaAcceso(request):
 
     # esta consulta por que se pierde de otras pantallas
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM sitios_sedesClinica"
     cur.execute(comando)
@@ -108,7 +108,7 @@ def validaAcceso(request):
     context['Sedes'] = sedes
 
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM planta_tiposPlanta"
     cur.execute(comando)
@@ -125,11 +125,11 @@ def validaAcceso(request):
 
     context['Perfiles'] = perfiles
 
-    miConexion0 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion0 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur0 = miConexion0.cursor()
-    comando = "select p.nombre nombre from planta_planta p where p.documento =' " + username + "'"
+    comando = "select p.nombre nombre from planta_planta p where p.documento ='" + username + "'"
     cur0.execute(comando)
-
+    print(comando)
     planta = []
 
     for nombre in cur0.fetchall():
@@ -140,16 +140,16 @@ def validaAcceso(request):
 
 
         context['Error'] = "Personal invalido ! "
-
+        print("Entre por personal No encontrado")
 
         miConexion0.close()
 
         return render(request, "accesoPrincipal.html", context)
 
     else:
-        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
         cur1 = miConexion1.cursor()
-        comando = "select p.contrasena contrasena from planta_planta p where p.documento =' " + username + "'" + " AND contrasena = '" + contrasena +"'"
+        comando = "select p.contrasena contrasena from planta_planta p where p.documento ='" + username + "'" + " AND contrasena = '" + contrasena +"'"
         cur1.execute(comando)
 
         plantaContrasena = []
@@ -164,7 +164,7 @@ def validaAcceso(request):
         else:
 
 
-            miConexion2 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+            miConexion2 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
             cur2 = miConexion1.cursor()
             comando = "select perf.tiposPlanta_id  perfil from planta_planta p , planta_perfilesplanta perf , planta_tiposPlanta tp where p.sedesClinica_id ='" + str(sede) + "' AND p.documento =  '" + str(username) + "' AND tp.id =perf.tiposPlanta_id AND  perf.tiposPlanta_id = " + str(perfilConseguido)
             print(comando)
@@ -228,7 +228,7 @@ def validaAcceso(request):
 def salir(request):
     print("Voy a Salir")
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM planta_tiposPlanta"
     cur.execute(comando)
@@ -245,7 +245,7 @@ def salir(request):
 
     context['Perfiles'] = perfiles
 
-    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur = miConexion.cursor()
     comando = "SELECT id ,nombre FROM sitios_sedesClinica"
     cur.execute(comando)
@@ -290,7 +290,7 @@ def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNu
         return HttpResponse(dato)
 
 
-    miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur1 = miConexion1.cursor()
     comando = "SELECT documento,contrasena FROM planta_planta WHERE documento = '" + str(username) + "'"
     print(comando)
@@ -314,7 +314,7 @@ def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNu
         #return render(request, "accesoPrincipal.html", context)
 
     else:
-        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
         cur1 = miConexion1.cursor()
         comando = "SELECT documento,contrasena FROM planta_planta WHERE documento = '" + str(username) + "' AND contrasena = '" + str(contrasenaAnt) + "'"
         print(comando)
@@ -334,7 +334,7 @@ def validaPassword(request, username, contrasenaAnt,contrasenaNueva,contrasenaNu
 
         else:
 
-            miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+            miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
             cur1 = miConexion1.cursor()
             comando = "UPDATE planta_planta SET contrasena = '" +  str(contrasenaNueva) + "' WHERE documento = '" + str(username) + "'"
             print(comando)
@@ -357,7 +357,7 @@ def Modal(request, username, password):
         print(username)
         print(password)
 
-        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+        miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
         cur1 = miConexion1.cursor()
         comando = "SELECT documento,contrasena FROM planta_planta WHERE documento = '" + str(username) + "'"
         print(comando)
@@ -374,40 +374,70 @@ def Modal(request, username, password):
         # return HttpResponse(UsuariosHc)
 
 
+def admHospProvisional(request,Documento, Perfil,  Sede, Servicio):
+
+    print("admHospProvisional")
+    print(Documento)
+    context1 = {}
+    context1['Documento'] = Documento
+    context1['Perfil'] = Perfil
+    print (Perfil)
+    context1['Sede'] = Sede
+    print ("En admHospProvisional la sede = a ", Sede)
+    print("En admHospProvisional la sede Context = a ", context1['Sede'] )
+    #context1['NombreSede'] = NombreSede
+    context1['Servicio'] = Servicio
+
+
+
+
+    return render(request, "admisiones/panelHospAdmisiones.html", context1)
+
+
 
 def buscarAdmision(request):
 
     print("Entre Buscar Admision" )
-    BusHabitacion = request.POST["BusHabitacion"]
-    BusTipoDoc = request.POST["BusTipoDoc"]
-    BusDocumento = request.POST["BusDocumento"]
-    BusDesde = request.POST["BusDesde"]
-    BusHasta = request.POST["BusHasta"]
-    Sede = request.POST["Sede"]
-    Servicio = request.POST["Servicio"]
+    BusHabitacion = request.POST["busHabitacion"]
+    BusTipoDoc = request.POST["busTipoDoc"]
+    BusDocumento = request.POST["busDocumento"]
+    BusDesde = request.POST["busDesde"]
+    BusHasta = request.POST["busHasta"]
+
 
     print(BusHabitacion)
     print(BusTipoDoc)
     print(BusDocumento)
     print(BusDesde)
     print(BusHasta)
-    print (Sede)
+
+
+    Sede = request.POST["Sede"]
+    print("La sede es = " , Sede)
+    Servicio = request.POST["Servicio"]
+
+
     print(Servicio)
 
     ingresos = []
     context = {}
 
-    miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable1')
+    miConexion1 = MySQLdb.connect(host='192.168.0.14', user='root', passwd='', db='vulnerable2')
     cur1 = miConexion1.cursor()
-    comando = "SELECT i.tipoDoc_id tipoDoc, i.documento documento, u.nombre  nombre , i.consec consec FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento  = u.documento AND u.documento = '" + str(BusDocumento) + "' AND i.sedesClinica_id = '" + str(Sede) + "'" + " AND serviciosActual_id = '" + str(Servicio) + "'  AND i.dependenciasActual_id = dep.id AND dep.nombre = '" + str(BusHabitacion) + "'"
+  #  comando = "SELECT i.tipoDoc_id tipoDoc, i.documento documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento  = u.documento AND u.documento = '" + str(BusDocumento) + "' AND i.sedesClinica_id = '" + str(Sede) + "'" + " AND serviciosActual_id = '" + str(Servicio) + "'  AND i.dependenciasActual_id = dep.id AND dep.nombre = '" + str(BusHabitacion) + "'"
+
+    comando = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento_id  = u.id AND i.fechaIngreso >= '" + str(
+        BusDesde) + "' AND i.fechaIngreso <=  '" + str(BusHasta) + "'  AND i.sedesClinica_id = '" + str(
+        Sede) + "'" + " AND serviciosActual_id = '" + str(
+        Servicio) + "'  AND i.dependenciasActual_id = dep.id "
     print(comando)
     cur1.execute(comando)
 
 
 
-    for tipoDoc, documento, nombre , consec in cur1.fetchall():
+    for tipoDoc, documento_id, nombre , consec, fechaIngreso,  fechaSalida, serviciosIng_id ,  dependenciasIngreso_id ,dxIngreso_id  in cur1.fetchall():
 
-        ingresos.append ({'tipoDoc' : tipoDoc, 'Documento': documento, 'Nombre': nombre , 'Consec': consec})
+        ingresos.append ({'tipoDoc' : tipoDoc, 'Documento': documento_id, 'Nombre': nombre , 'Consec': consec, 'FechaIngreso': fechaIngreso, 'FechaSalida': fechaSalida,'ServiciosIng': serviciosIng_id, 'DependenciasIngreso' : dependenciasIngreso_id, 'DxIngreso': dxIngreso_id})
 
     miConexion1.close()
     print(ingresos)
@@ -417,6 +447,5 @@ def buscarAdmision(request):
 
 
     return render(request, "admisiones/panelHospAdmisionesBravo.html", context)
-
 
 

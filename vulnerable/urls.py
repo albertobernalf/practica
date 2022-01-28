@@ -32,10 +32,9 @@ urlpatterns = [
     # Acceso al Programa
 
     path('menu/', views.menu),
-    #path('menuAcceso/validaAcceso/', views.validaAcceso),
+    # path('menuAcceso/validaAcceso/', views.validaAcceso),
     path('contrasena/<str:documento>', views.contrasena),
-    #path('salir/validaAcceso/', views.validaAcceso),
-
+    # path('salir/validaAcceso/', views.validaAcceso),
 
     # HISTORIA CLINICA
 
@@ -47,7 +46,7 @@ urlpatterns = [
     path('motivoSeñas/', viewsClinico.motivoSeñas),
     path('subjetivoSeñas/', viewsClinico.subjetivoSeñas),
     path('motivoInvidente/', viewsClinico.motivoInvidente),
-   # path('resMotivoInvidente/', viewsClinico.s),
+    # path('resMotivoInvidente/', viewsClinico.s),
     path('reconocerAudio/', views.reconocerAudio),
     path('reproduceAudio/', views.reproduceAudio),
     path('accesoEspecialidadMedico/<str:documento>', views.accesoEspecialidadMedico),
@@ -56,30 +55,27 @@ urlpatterns = [
 
     path('prueba/', viewsClinico.prueba),
  #   path('manejoLuz/', viewsmecanicosPacientes.manejoLuz.as_view()),
-#    path('ambienteMusical/', viewsmecanicosPacientes.ambienteMusical.as_view()),
+  #  path('ambienteMusical/', viewsmecanicosPacientes.ambienteMusical.as_view()),
     path('camara/', views.camara),
     path('leeAudio/', views.leeAudio),
 
     # Admisiones
 
-    path('admHospProvisional/<str:Documento>,<str:Perfil>,<str:Sede>,<str:NombreSede>,<str:Servicio>', views.admHospProvisional),
+    path('admHospProvisional/<str:Documento>,<str:Perfil>,<str:Sede>,<str:Servicio>',
+         viewsAdmisiones.admHospProvisional),
 
-    path('menuAcceso/',viewsAdmisiones.menuAcceso),
+    path('menuAcceso/', viewsAdmisiones.menuAcceso),
     path('validaAcceso/', viewsAdmisiones.validaAcceso),
     path('salir/', viewsAdmisiones.salir),
-    path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>',  viewsAdmisiones.validaPassword),
+    path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>',
+         viewsAdmisiones.validaPassword),
     path('findOne/<str:username> , <str:password> /', viewsAdmisiones.Modal),
-   # path('buscarAdmision/<str:BusHabitacion>,<str:BusTipoDoc>,<str:BusDocumento>,<str:BusPaciente>,<str:BusDesde>,<str:BusHasta>/', viewsAdmisiones.buscarAdmision),
+    # path('buscarAdmision/<str:BusHabitacion>,<str:BusTipoDoc>,<str:BusDocumento>,<str:BusPaciente>,<str:BusDesde>,<str:BusHasta>', viewsAdmisiones.buscarAdmision),
     path('buscarAdmision/', viewsAdmisiones.buscarAdmision),
 
-
-
-# Facturacion
-
-
+    # Facturacion
 
     # Citas Medicas
-
 
 ]
 

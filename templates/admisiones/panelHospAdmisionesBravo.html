@@ -52,36 +52,29 @@
                 <div style="height: 600px; overflow: auto">
                     <table class="table table-hover"  style="height: 600px , background-color:LightGray; border: 2px solid black; border-radius: 10px; width:99%;">
 
-                        <tr>
+ <tbody>
 
-                     <td>{Ingresos}}</td>
-                             <td>dato_2</td>
-                             <td>dato_3</td>
-                        </tr>
+				 {% for ingresos in Ingresos %}
+				 <tr>
+					<td>{{ ingresos.tipoDoc }}</td>
+                     <td>{{ ingresos.Documento }}</td>
+                        <td>{{ ingresos.Nombre }}</td>
+                        <td>{{ ingresos.Consec }}</td>
+                     <td>{{ ingresos.FechaIngreso }}</td>
+                     <td>{{ ingresos.FechaSalida }}</td>
+                     <td>{{ ingresos.ServicioIng }}</td>
+                     <td>{{ ingresos.DependenciaIngreso }}</td>
+                     <td>{{ ingresos.DxIngreso }}</td>
 
-                                                <tr>
-
-                     <td>dato_1</td>
-                             <td>dato_2</td>
-                             <td>dato_3</td>
-                        </tr>
 
 
-                                                <tr>
 
-                     <td>dato_1</td>
-                             <td>dato_2</td>
-                             <td>dato_3</td>
-                        </tr>
-                             <tr>
 
-                     <td>{{Documento}}</td>
-                             <td>{{Sede}}</td>
-                             <td>{{Perfil}}</td>
-                                 <td>{{NombreSede}}</td>
-                                 <td>{{Servicio}}</td>
-                        </tr>
 
+				 </tr>
+				 {% endfor %}
+
+				</tbody>
 
                     </table>
                 </div>
