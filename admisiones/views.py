@@ -430,29 +430,35 @@ def buscarAdmision(request):
 
     # Aqui encadeno el query final con todos los parametros de consultas
 
-    detalle = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE "
+    detalle = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE i.sedesClinica = dep.sedesClinica AND i.dependenciasActual_id = dep.id AND i.sedesClinica = '"
+    str(Sede) +"´"
     print(detalle)
+
+    if BusServicio != "":
+      detalle = detalle + " AND  i.serviciosActual_id = '" + str(BusServicio) + "'"
+    print(detalle)
+
     if BusDesde != "":
-        detalle = detalle +  " i.fechaIngreso >= '" + str(BusDesde) +"'"
+        detalle = detalle +  " AND i.fechaIngreso >= '" + str(BusDesde) +"'"
         print (detalle)
 
     if BusHasta != "":
         detalle = detalle + " AND i.fechaIngreso <=  '" + str(BusHasta) + "'"
         print(detalle)
 
-    if Sede != "":
-        detalle = detalle + " AND i.sedesClinica_id = '" + str(Sede) + "'"
+    if BusHabitacion != "":
+        detalle = detalle + " AND i.dependenciasActual_id = '" + str(BusHabitacion) + "'"
         print(detalle)
 
-  #  if BusDocumento != "":
-  #      detalle = detalle + " AND i.sedesClinica_id = '" + str(Sede) + "'"
-  #      print(detalle)
+    if BusTipoDoc != "":
+            detalle = detalle + " AND i.tipoDoc= '" + str(BusTipoDoc) + "'"
+            print(detalle)
+
+    if BusDocumento != "":
+                detalle = detalle + " AND i.documento_id= '" + str(BusDocumento) + "'"
+                print(detalle)
 
 
-   # comando = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento_id  = u.id AND i.fechaIngreso >= '" + str(
-   #     BusDesde) + "' AND i.fechaIngreso <=  '" + str(BusHasta) + "'  AND i.sedesClinica_id = '" + str(
-   #     Sede) + "'" + " AND serviciosActual_id = '" + str(Servicio) + "'  AND i.dependenciasActual_id = dep.id "
-   # print(comando)
     cur1.execute(detalle)
 
 
