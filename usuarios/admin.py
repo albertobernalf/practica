@@ -5,25 +5,27 @@ from django.contrib import admin
 from usuarios.models import TiposDocumento, TiposUsuario, Usuarios
 
 
+@admin.register(TiposDocumento)
 class tiposDocumentoAdmin(admin.ModelAdmin):
 
-    list_display=("id","abreviatura","nombre","fechaRegistro")
-    search_fields =("id","abreviatura","nombre","fechaRegistro")
+    list_display=("id","abreviatura","nombre")
+    search_fields =("id","abreviatura","nombre")
+    # Filtrar
+    list_filter = ('nombre',)
 
-
+@admin.register(TiposUsuario)
 class tiposUsuarioAdmin(admin.ModelAdmin):
 
-        list_display = ("id", "nombre","fechaRegistro")
-        search_fields = ("id", "nombre","fechaRegistro")
+        list_display = ("id", "nombre")
+        search_fields = ("id", "nombre")
+        # Filtrar
+        list_filter = ('nombre',)
 
-
+@admin.register(Usuarios)
 class usuariosAdmin(admin.ModelAdmin):
 
     list_display = ("id","tipoDoc","documento","nombre","genero","centrosC","tiposUsuario","direccion","telefono","contacto")
     search_fields =("id","tipoDoc","documento","nombre","genero","centrosC","tiposUsuario","direccion","telefono","contacto")
-
-
-admin.site.register(TiposDocumento, tiposDocumentoAdmin)
-admin.site.register(TiposUsuario, tiposUsuarioAdmin)
-admin.site.register(Usuarios, usuariosAdmin)
+    # Filtrar
+    list_filter = ('genero','tiposUsuario')
 

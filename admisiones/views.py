@@ -220,7 +220,7 @@ def validaAcceso(request):
                     miConexion0.close()
                     miConexion1.close()
                     miConexion2.close()
-                    return render(request, "admisiones/menuAdmisiones.html", context)
+                    return render(request, "admisiones/panelHospAdmisionesBravo.html", context)
 
     return render(request, "menuMedico.html",context)
 
@@ -403,21 +403,23 @@ def buscarAdmision(request):
     BusDocumento = request.POST["busDocumento"]
     BusDesde = request.POST["busDesde"]
     BusHasta = request.POST["busHasta"]
-
-
-    print(BusHabitacion)
-    print(BusTipoDoc)
-    print(BusDocumento)
-    print(BusDesde)
-    print(BusHasta)
-
+    BusEspecialidad = request.POST["busEspecialidad"]
+    BusMedico = request.POST["busMedico"]
+    BusServicio = request.POST["busServicio"]
 
     Sede = request.POST["Sede"]
+    print("otra sede = ", Sede)
+
+    print("BusHabitacion= ", BusHabitacion)
+    print("BusTipoDoc=", BusTipoDoc)
+    print("BusDocumento=" , BusDocumento)
+    print("BusDesde=", BusDesde)
+    print("BusHasta=", BusHasta)
     print("La sede es = " , Sede)
-    Servicio = request.POST["Servicio"]
+    print("El busServicio = ", BusServicio)
+    print("El busEspecialidad = ", BusEspecialidad)
+    print("El busSMedico = ", BusMedico)
 
-
-    print(Servicio)
 
     ingresos = []
     context = {}
@@ -426,12 +428,32 @@ def buscarAdmision(request):
     cur1 = miConexion1.cursor()
   #  comando = "SELECT i.tipoDoc_id tipoDoc, i.documento documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento  = u.documento AND u.documento = '" + str(BusDocumento) + "' AND i.sedesClinica_id = '" + str(Sede) + "'" + " AND serviciosActual_id = '" + str(Servicio) + "'  AND i.dependenciasActual_id = dep.id AND dep.nombre = '" + str(BusHabitacion) + "'"
 
-    comando = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento_id  = u.id AND i.fechaIngreso >= '" + str(
-        BusDesde) + "' AND i.fechaIngreso <=  '" + str(BusHasta) + "'  AND i.sedesClinica_id = '" + str(
-        Sede) + "'" + " AND serviciosActual_id = '" + str(
-        Servicio) + "'  AND i.dependenciasActual_id = dep.id "
-    print(comando)
-    cur1.execute(comando)
+    # Aqui encadeno el query final con todos los parametros de consultas
+
+    detalle = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE "
+    print(detalle)
+    if BusDesde != "":
+        detalle = detalle +  " i.fechaIngreso >= '" + str(BusDesde) +"'"
+        print (detalle)
+
+    if BusHasta != "":
+        detalle = detalle + " AND i.fechaIngreso <=  '" + str(BusHasta) + "'"
+        print(detalle)
+
+    if Sede != "":
+        detalle = detalle + " AND i.sedesClinica_id = '" + str(Sede) + "'"
+        print(detalle)
+
+  #  if BusDocumento != "":
+  #      detalle = detalle + " AND i.sedesClinica_id = '" + str(Sede) + "'"
+  #      print(detalle)
+
+
+   # comando = "SELECT i.tipoDoc_id tipoDoc, i.documento_id documento, u.nombre  nombre , i.consec consec , fechaIngreso , fechaSalida, serviciosIng_id,  dependenciasIngreso_id , dxIngreso_id FROM admisiones_ingresos i, usuarios_usuarios u, sitios_dependencias dep  WHERE  i.tipoDoc_id = u.tipoDoc_id and i.documento_id  = u.id AND i.fechaIngreso >= '" + str(
+   #     BusDesde) + "' AND i.fechaIngreso <=  '" + str(BusHasta) + "'  AND i.sedesClinica_id = '" + str(
+   #     Sede) + "'" + " AND serviciosActual_id = '" + str(Servicio) + "'  AND i.dependenciasActual_id = dep.id "
+   # print(comando)
+    cur1.execute(detalle)
 
 
 

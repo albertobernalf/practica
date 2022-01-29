@@ -5,27 +5,30 @@ from django.contrib import admin
 from planta.models import TiposPlanta, Planta, PerfilesPlanta
 
 
-
+@admin.register(TiposPlanta)
 class tiposPlantaAdmin(admin.ModelAdmin):
 
     list_display=("id","nombre")
     search_fields =("id","nombre")
+    # Filtrar
+    list_filter = ('nombre', )
 
+@admin.register(PerfilesPlanta)
 class perfilesPlantaAdmin(admin.ModelAdmin):
 
-        list_display = ("id", "sedesClinica", "planta", "tiposPlanta","fechaRegistro")
-        search_fields =  ("id", "sedesClinica", "planta", "tiposPlanta","fechaRegistro")
+        list_display = ("id", "sedesClinica", "planta", "tiposPlanta")
+        search_fields =  ("id", "sedesClinica", "planta", "tiposPlanta")
+        # Filtrar
+        list_filter = ('sedesClinica','planta','tiposPlanta')
 
-
+@admin.register(Planta)
 class plantaAdmin(admin.ModelAdmin):
 
-    list_display = ("id","sedesClinica","tipoDoc","documento","nombre","genero","direccion","telefono","fechaRegistro")
-    search_fields = ("id","sedesClinica","tipoDoc","documento","nombre","genero","direccion","telefono","fechaRegistro")
+    list_display = ("id","sedesClinica","tipoDoc","documento","nombre","genero","direccion","telefono")
+    search_fields = ("id","sedesClinica","tipoDoc","documento","nombre","genero","direccion","telefono")
+    # Filtrar
+    list_filter = ('nombre','sedesClinica','documento','genero')
 
-
-admin.site.register(TiposPlanta, tiposPlantaAdmin)
-admin.site.register(PerfilesPlanta, perfilesPlantaAdmin)
-admin.site.register(Planta, plantaAdmin)
 
 
 
