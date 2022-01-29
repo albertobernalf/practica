@@ -28,6 +28,7 @@ class Ingresos(models.Model):
     dxSalida = models.ForeignKey('clinico.Diagnosticos', default=1, on_delete=models.PROTECT, null=True,  related_name='id5')
     medicoSalida =  models.ForeignKey('planta.Planta', default=1, on_delete=models.PROTECT, null=True,  related_name='id8')
     salidaClinica = models.CharField(max_length=1,default='N')
+    salidaDefinitiva =  models.CharField(max_length=1,default='N')
     fechaRegistro = models.DateTimeField(default=now, editable=False)
     usuarioRegistro = models.ForeignKey('planta.Planta', default=1, on_delete=models.PROTECT, null=True)
     estadoReg = models.CharField(max_length=1, default='A', editable=False)
