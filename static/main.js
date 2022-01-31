@@ -24,13 +24,10 @@ console.log(form2)
 
 $(document).on('change', '#busServicio', function(event) {
 
-    alert("entre");
 
         var Serv =   $("#busServicio option:selected").text();
 
         var Sede =  document.getElementById("Sede").value;
-
-        alert (Serv);
 
         $.ajax({
 	           url: '/buscarHabitaciones',
@@ -39,23 +36,17 @@ $(document).on('change', '#busServicio', function(event) {
 	           dataType : 'json',
 
 	  		success: function (respuesta) {
-	  		 alert(" De vuelta ");
-	  		 alert(respuesta);
+
+	  		   var options = '<option value="=================="></option>';
+
 	  		  var dato = JSON.parse(respuesta);
 
 
-                    alert("pase-1");
-
-
-                     alert("pase0");
-
                      const $id2 = document.querySelector("#busHabitacion");
 
-                     alert("pase1");
 
  	      		     $("#busHabitacion").empty();
 
- 	      		     alert("pase2");
 
 	                 $.each(dato, function(key,value) {
                                     options +='<option value="' + value.id + '">' + value.nombre + '</option>';
@@ -64,8 +55,6 @@ $(document).on('change', '#busServicio', function(event) {
                                     option.text = value.nombre;
                                     $id2.appendChild(option);
  	      		      });
-
-
 
 
 
