@@ -20,6 +20,66 @@ console.log(form)
 console.log(form2)
 
 
+
+
+$(document).on('change', '#busServicio', function(event) {
+
+    alert("entre");
+
+        var Serv =   $("#busServicio option:selected").text();
+
+        var Sede =  document.getElementById("Sede").value;
+
+        alert (Serv);
+
+        $.ajax({
+	           url: '/buscarHabitaciones',
+	            data : {Serv:Serv, Sede:Sede},
+	           type: 'GET',
+	           dataType : 'json',
+
+	  		success: function (respuesta) {
+	  		 alert(" De vuelta ");
+	  		 alert(respuesta);
+	  		  var dato = JSON.parse(respuesta);
+
+
+                    alert("pase-1");
+
+
+                     alert("pase0");
+
+                     const $id2 = document.querySelector("#busHabitacion");
+
+                     alert("pase1");
+
+ 	      		     $("#busHabitacion").empty();
+
+ 	      		     alert("pase2");
+
+	                 $.each(dato, function(key,value) {
+                                    options +='<option value="' + value.id + '">' + value.nombre + '</option>';
+                                    option = document.createElement("option");
+                                    option.value = value.id;
+                                    option.text = value.nombre;
+                                    $id2.appendChild(option);
+ 	      		      });
+
+
+
+
+
+                    },
+	   		    error: function (request, status, error) {
+
+	   			    $("#mensajes").html(" !  Reproduccion  con error !");
+	   	    	}
+
+	     });
+});
+
+
+
 // Para la ventana Moddal
 
  $('.eBtn').on('click',function(event)

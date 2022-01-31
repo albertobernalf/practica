@@ -10,6 +10,7 @@ class tiposPlantaAdmin(admin.ModelAdmin):
 
     list_display=("id","nombre")
     search_fields =("id","nombre")
+    readonly_fields = ["nombre"]
     # Filtrar
     list_filter = ('nombre', )
 

@@ -73,6 +73,8 @@ urlpatterns = [
     # path('buscarAdmision/<str:BusHabitacion>,<str:BusTipoDoc>,<str:BusDocumento>,<str:BusPaciente>,<str:BusDesde>,<str:BusHasta>', viewsAdmisiones.buscarAdmision),
     path('buscarAdmision/', viewsAdmisiones.buscarAdmision),
 
+    path('buscarHabitaciones/', viewsAdmisiones.buscarHabitaciones),
+
     # Facturacion
 
     # Citas Medicas
