@@ -69,6 +69,12 @@ $(document).on('change', '#busServicio', function(event) {
 
 
 
+
+
+
+
+
+
 // Para la ventana Moddal
 
  $('.eBtn').on('click',function(event)

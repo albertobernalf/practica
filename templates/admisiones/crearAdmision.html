@@ -1,0 +1,61 @@
+{% extends "admisiones/menuAdmisiones.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+ <!-- <div class="form-group"> -->
+      <div class="form-group row">
+            {{ form.tipoDoc.label }}
+          {{form.tipoDoc}}
+           {{ form.documento.label }}
+          {{form.documento}}
+           {{ form.consec.label }}
+          {{form.consec}}
+
+            </div>
+
+
+            <div class="form-group row">
+  {{ form.fechaIngreso.label }}
+           {{form.fechaIngreso}}
+          {{ form.fechaSalida.label }}
+           {{form.fechaSalida}}
+           {{ form.factura.label }}
+           {{form.factura}}
+           {{ form.numcita.label }}
+           {{form.numcita}}
+
+                  </div>
+
+                  <div class="form-group row">
+
+           {{ form.dependenciasIngreso.label }}
+           {{form.dependenciasIngreso}}
+           {{ form.dependenciasActual.label }}
+           {{form.dependenciasActual}}
+                        </div>
+
+                        <div class="form-group row">
+           {{ form.dxIngreso.label }}
+           {{form.dxIngreso}}
+           {{ form.dxActual.label }}
+           {{form.dxActual}}
+           {{ form.estadoSalida.label }}
+           {{form.estadoSalida}}
+           {{ form.estadoSalida1.label }}
+           {{form.estadoSalida1}}
+
+
+
+
+
+
+      </div>
+   <!--   </div>  -->
+
+
+{% endblock %}

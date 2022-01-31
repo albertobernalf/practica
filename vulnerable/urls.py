@@ -74,6 +74,8 @@ urlpatterns = [
     path('buscarAdmision/', viewsAdmisiones.buscarAdmision),
 
     path('buscarHabitaciones/', viewsAdmisiones.buscarHabitaciones),
+    path('crearAdmision/', viewsAdmisiones.crearAdmision.as_view()),
+    path('crearResponsables/', viewsAdmisiones.crearResponsables),
 
     # Facturacion
 

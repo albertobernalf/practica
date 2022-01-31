@@ -231,20 +231,57 @@
         <div class="card-block">
                 <div style="height: 150px; overflow: auto">
                     <table class="table " style="height: 100px, background-color:LightGray; border: 2px solid black; border-radius: 10px;width:99%;">
-
+                         <form class="form-inline" action="/crearAdmision/" method="get" id="login-form"><input type="hidden"
+                                                                                       name="csrfmiddlewaretoken"
+                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
 
 
                         <tr>
+
+
                             <td></td>
 
-                            <td> <input type="button" id="btnCrearIngreso" name="btnCrearIngreso" value="Crear Ingreso"> </input>             </td>
-                            <td> <input type="button" id="btnResponsables" name="btnResponsables" value="Responsables"> </input>             </td>
-                            <td> <input type="button" id="btnAbonos" name="btnAbonos" value="Abonos"> </input>             </td>
-                            <td> <input type="button" id="btnCambioServicios" name="btnCambioServicios" value = "Cambio Servicio"></input>             </td>
-                            <td> <input type="button" id="btnHabitaciones" name="btnHabitaciones" value = "Habitaciones"></input>             </td>
-                            <td> <input type="button" id="btnAutorizaciones" name="btnAutorizaciones" value = "Autorizaciones"></input>             </td>
+                            <td> <input type="submit" id="btnCrearIngreso" name="btnCrearIngreso" value="Crear Admision"> </input>             </td>
+                              </form>
+                            <form class="form-inline" action="/crearResponsables/" method="get" id="login-form"><input type="hidden"
+                                                                                       name="csrfmiddlewaretoken"
+                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+
+                            <td> <input type="submit" id="btnResponsables" name="btnResponsables" value="Responsables"> </input>             </td>
+                                </form>
+                             <form class="form-inline" action="/crearAbonos/" method="get" id="login-form"><input type="hidden"
+                                                                                       name="csrfmiddlewaretoken"
+                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+
+
+                            <td> <input type="submit" id="btnAbonos" name="btnAbonos" value="Abonos"> </input>             </td>
+
+                                   </form>
+
+                        <form class="form-inline" action="/cambioServicio/" method="get" id="login-form"><input type="hidden"
+                                                                                       name="csrfmiddlewaretoken"
+                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+
+                            <td> <input type="submit" id="btnCambioServicios" name="btnCambioServicios" value = "Cambio Servicio"></input>             </td>
+                              </form>
+
+                             <form class="form-inline" action="/habitaciones/" method="get" id="login-form"><input type="hidden"
+                                                                                       name="csrfmiddlewaretoken"
+                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+                            <td> <input type="submit" id="btnHabitaciones" name="btnHabitaciones" value = "Habitaciones"></input>             </td>
+
+                                   </form>
+
+                            <form class="form-inline" action="/autorizaciones/" method="get" id="login-form"><input type="hidden"
+                                                                                       name="csrfmiddlewaretoken"
+                                                                                       value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+                            <td> <input type="submit" id="btnAutorizaciones" name="btnAutorizaciones" value = "Autorizaciones"></input>             </td>
+
+                          </form>
                                <td></td>
                               <td></td>
+
+
                         </tr>
 
                         <tr>
@@ -259,6 +296,9 @@
                               <td>Usuario: Alberto Bernal   </td>
                             <td></td>
                         </tr>
+
+
+                         </form>
 
 
                     </table>

@@ -3,6 +3,8 @@ import MySQLdb
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 import json
+from django.views.generic import ListView, CreateView, TemplateView
+from .forms import crearAdmisionForm
 
 # Create your views here.
 
@@ -680,7 +682,7 @@ def buscarAdmision(request):
         NombreHabitacion = nombre
 
     miConexiont.close()
-    print(medicos)
+    print("NombreHabitacion = ", NombreHabitacion)
 
 
     # Fin busco nombre de habitacion
@@ -733,9 +735,9 @@ def buscarAdmision(request):
 
 
 
-    for tipoDoc, documento_id, nombre , consec, fechaIngreso,  fechaSalida, serviciosIng_id ,  dependenciasIngreso_id ,dxActual  in cur1.fetchall():
+    for tipoDoc, documento_id, nombre , consec, fechaIngreso,  fechaSalida, servicioNombreIng, camaNombreIng, dxActual  in cur1.fetchall():
 
-        ingresos.append ({'tipoDoc' : tipoDoc, 'Documento': documento_id, 'Nombre': nombre , 'Consec': consec, 'FechaIngreso': fechaIngreso, 'FechaSalida': fechaSalida,'ServiciosIng': serviciosIng_id, 'DependenciasIngreso' : dependenciasIngreso_id, 'dxActual': dxActual})
+        ingresos.append ({'tipoDoc' : tipoDoc, 'Documento': documento_id, 'Nombre': nombre , 'Consec': consec, 'FechaIngreso': fechaIngreso, 'FechaSalida': fechaSalida, 'servicioNombreIng': servicioNombreIng, 'camaNombreIng': camaNombreIng, 'DxActual': dxActual})
 
     miConexion1.close()
     print(ingresos)
@@ -755,7 +757,7 @@ def buscarHabitaciones(request):
     Sede = request.GET["Sede"]
     print ("Entre buscar habitaciones servicio =",Serv)
     print ("Sede = ", Sede)
-    datos = {'Hola':3}
+
 
     # Busco la habitaciones de un Servicio
 
@@ -776,8 +778,69 @@ def buscarHabitaciones(request):
     context['Habitaciones'] = Habitaciones
 
     return JsonResponse(json.dumps(Habitaciones), safe=False)
-  #
 
-    # Fin busco nombre de habitacion
+class crearAdmision(TemplateView):
+    print("Entre a Craer Admision")
+    template_name = 'admisiones/crearAdmision.html'
+    print("Entre a Registrar Admision")
 
-   # return HttpResponse(json.dumps(Habitaciones))
+    def post(self, request, *args, **kwargs):
+        print("Entre POST")
+        data = {}
+        try:
+            print("Entre try")
+            if 'action' in request.POST:
+                action = request.POST['action']
+                id = request.POST['id']
+            else:
+                print("Falsa action")
+                action = False
+            print(action)
+            print(id)
+
+            action = request.POST.get('action', False)
+
+            if action == 'BuscaExamenes':
+                print("Entre Action")
+                data = []
+                for s in Examenes.objects.all().filter(id_TipoExamen=request.POST["id"]):
+                    data.append({'id': s.id, 'nombre': s.nombre})
+                    print(data[0])
+            else:
+                data[0] = "Ha ocurrido un error"
+
+            if action == 'BuscaEspecialidad':
+                print("Entre Action especialidad")
+                print(id)
+                data = []
+                for s in EspecialidadesMedicos.objects.all().filter(id_especialidad=request.POST["id"]):
+                    medico = Medicos.objects.get(nombre=s.id_medico)
+
+                    data.append({'id': s.id, 'nombre': medico.nombre})
+                    print(data[0])
+            else:
+                data[0] = "Ha ocurrido un error"
+
+
+        except Exception as e:
+            print("Exception")
+            #data[0] = atrr(e)
+
+        print("me devuelvo con ")
+
+        return HttpResponse(json.dumps(data))
+
+    def get_context_data(self, **kwargs):
+        print("Entre a Contexto")
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Mi gran Template'
+        context['form'] = crearAdmisionForm
+   #     context['form2'] = historiaExamenesForm
+        print("Se supone voya a cargar la forma")
+        print (context)
+        return context
+
+
+def crearResponsables(request):
+    print("Entre crear Responsables")
+    pass
