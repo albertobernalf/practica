@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'vulnerable2',
-	'HOST' : '192.168.0.13',
+	'HOST' : '192.168.0.14',
 	'PORT' : '3306',
 	'USER' : 'root',
 	'PASSWORD' : '',

@@ -8,7 +8,7 @@ from django.utils.timezone import now
 
 class Servicios(models.Model):
     id = models.AutoField(primary_key=True)
-    sedesClinica = models.ForeignKey('sitios.SedesClinica', default=1, on_delete=models.PROTECT, null=True)
+    #sedesClinica = models.ForeignKey('sitios.SedesClinica', default=1, on_delete=models.PROTECT, null=True)
     nombre = models.CharField(max_length=30)
 
 

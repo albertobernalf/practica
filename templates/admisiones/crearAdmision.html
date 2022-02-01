@@ -3,59 +3,112 @@
 
 {% block content %}
 
+<!-- <div class="form-group"> -->
+
+<input type="hidden" id="Sede" name="Sede" value="{{Sede}}">
+<input type="hidden" id="Perfil" name="Perfil" value="{{Perfil}}">
+
+
+<table class="table  " style="height: 100px; background-color:LightGray;  width:100%;">
+
+    <td></td>
+    <td>
+        <table class="table  "
+               style="height: 100px; background-color:LightGray; border: 2px solid black; border-radius: 100px; width:100%;">
+
+            <tr>
+                <div class="form-group row">
+
+                    <td>
+                        {{ form.sedesClinica.label }}
+                        {{form.sedesClinica}}
+
+                    <td>
+
+                    <td>
+                        {{ form.tipoDoc.label }}
+                        {{form.tipoDoc}}
+
+                    <td>
+                        {{ form.documento.label }}
+                        {{form.documento}}
+                    </td>
+
+                         <td>
+                        {{ form.consec.label }}
+                        {{form.consec}}
+                    </td>
+                             <td>
+                        {{ form.fechaIngreso.label }}
+                        <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" value={{
+                               form.fechaIngreso }}/>
+
+                    </td>
+                </div>
+            </tr>
+            <tr>
+
+                <div class="form-group row">
+
+
+
+                     <td>
+                      {{ form.extraServicio.label }}
+                        {{form.extraServicio}}
+                       </td>
+                         <td>
+                        {{ form.dependenciasIngreso.label }}
+                        {{form.dependenciasIngreso}}
+                    </td>
+
+  </td>
+                    <td>
+                        {{ form.dxIngreso.label }}
+                        {{form.dxIngreso}}
+                    </td>
+
+                        <td>
+                        {{ form.medicoIngreso.label }}
+                        {{form.medicoIngreso}}
+                    </td>
 
 
 
 
- <!-- <div class="form-group"> -->
-      <div class="form-group row">
-            {{ form.tipoDoc.label }}
-          {{form.tipoDoc}}
-           {{ form.documento.label }}
-          {{form.documento}}
-           {{ form.consec.label }}
-          {{form.consec}}
 
-            </div>
+                </div>
+            </tr>
 
+            <tr>
+                 <div class="form-group row">
+                        <td>
+                        {{ form.estadoSalida.label }}
+                        {{form.estadoSalida}}
+                    </td>
+                     </div>
 
-            <div class="form-group row">
-  {{ form.fechaIngreso.label }}
-           {{form.fechaIngreso}}
-          {{ form.fechaSalida.label }}
-           {{form.fechaSalida}}
-           {{ form.factura.label }}
-           {{form.factura}}
-           {{ form.numcita.label }}
-           {{form.numcita}}
-
-                  </div>
-
-                  <div class="form-group row">
-
-           {{ form.dependenciasIngreso.label }}
-           {{form.dependenciasIngreso}}
-           {{ form.dependenciasActual.label }}
-           {{form.dependenciasActual}}
-                        </div>
-
-                        <div class="form-group row">
-           {{ form.dxIngreso.label }}
-           {{form.dxIngreso}}
-           {{ form.dxActual.label }}
-           {{form.dxActual}}
-           {{ form.estadoSalida.label }}
-           {{form.estadoSalida}}
-           {{ form.estadoSalida1.label }}
-           {{form.estadoSalida1}}
+            </tr>
 
 
 
+            <form class="form-inline" action="/guardarAdmision/" method="POST" id="login-form"><input type="hidden"
+                                                                                                      name="csrfmiddlewaretoken"
+                                                                                                      value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+                <td><input type="submit" id="guardarAdmision" name="guardarAdmision" value="Grabar"></input></td>
+
+            </form>
+
+            <form class="form-inline" action="/retornarAdmision/{{Sede }},  {{Perfil }}  " method="POST"
+                  id="login-form"><input type="hidden"
+                                         name="csrfmiddlewaretoken"
+                                         value="MJ1CwN7LHRoBZUnyQoPpHBnb4M3PwGYmsLJeNsN92l41zY9ZaUPztrhcMWyUTHxc">
+                <td><input type="submit" id="retornarAdmision" name="retornarAdmision" value="Retornar"></input></td>
+
+            </form>
 
 
-
-      </div>
-   <!--   </div>  -->
-
-
+        </table>
+    </td>
+    <td></td>
+</table>
 {% endblock %}

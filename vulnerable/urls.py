@@ -66,15 +66,18 @@ urlpatterns = [
 
     path('menuAcceso/', viewsAdmisiones.menuAcceso),
     path('validaAcceso/', viewsAdmisiones.validaAcceso),
+
+    path('retornarAdmision/<str:Sede>,<str:Perfil>', viewsAdmisiones.retornarAdmision),
+
     path('salir/', viewsAdmisiones.salir),
     path('grabar1/<str:username>,<str:contrasenaAnt>,<str:contrasenaNueva>,<str:contrasenaNueva2>',
          viewsAdmisiones.validaPassword),
-    path('findOne/<str:username> , <str:password> /', viewsAdmisiones.Modal),
+    path('findOne/<str:username> , <str:password> , <str:tipoDoc>/', viewsAdmisiones.Modal),
     # path('buscarAdmision/<str:BusHabitacion>,<str:BusTipoDoc>,<str:BusDocumento>,<str:BusPaciente>,<str:BusDesde>,<str:BusHasta>', viewsAdmisiones.buscarAdmision),
     path('buscarAdmision/', viewsAdmisiones.buscarAdmision),
 
     path('buscarHabitaciones/', viewsAdmisiones.buscarHabitaciones),
-    path('crearAdmision/', viewsAdmisiones.crearAdmision.as_view()),
+    path('crearAdmision/<str:Sede>,<str:Perfil>', viewsAdmisiones.crearAdmision.as_view()),
     path('crearResponsables/', viewsAdmisiones.crearResponsables),
 
     # Facturacion
