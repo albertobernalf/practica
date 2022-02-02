@@ -33,7 +33,7 @@ class crearAdmisionForm(forms.ModelForm):
         tipoDoc = forms.ModelChoiceField(queryset=TiposDocumento.objects.all())
         documento = forms.IntegerField(label='No Documento')
         consec = forms.IntegerField(label='Ingreso No',  disabled=True)
-        fechaIngreso = forms.DateTimeField(label="Fec.Ingreso : ")
+        fechaIngreso = forms.DateTimeField(label="Fec.Ingreso : ",initial=datetime.date.today)
         fechaSalida = forms.DateTimeField(label="Fec.Salida : ",initial=datetime.date.today)
         factura =  forms.IntegerField(initial=0,  disabled=True)
         numcita = forms.IntegerField(initial=0,  disabled=True)

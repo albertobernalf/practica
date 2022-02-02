@@ -6,7 +6,7 @@ from django.utils.timezone import now
 class Ingresos(models.Model):
 
     id           = models.AutoField(primary_key=True)
-    sedesClinica = models.ForeignKey('sitios.SedesClinica', default=1, on_delete=models.PROTECT, null=True)
+    sedesClinica = models.ForeignKey('sitios.SedesClinica', default=1, on_delete=models.PROTECT, null=True, related_name = 'SedesClinica')
     tipoDoc = models.ForeignKey('usuarios.TiposDocumento', default=1, on_delete=models.PROTECT, null=True)
     documento = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True, related_name='Documento')
     consec    = models.IntegerField()

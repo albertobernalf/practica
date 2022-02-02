@@ -34,7 +34,7 @@ class Departamentos(models.Model):
 
 class Ciudades(models.Model):
         id = models.AutoField(primary_key=True)
-        departamentos = models.ForeignKey('sitios.Departamentos', default=1, on_delete=models.PROTECT, null=True)
+        departamentos = models.ForeignKey('sitios.Departamentos', default=1, on_delete=models.PROTECT, null=True, related_name = 'ciudades')
         nombre = models.CharField(max_length=50)
         fechaRegistro = models.DateTimeField(default=now, editable=False)
    #     usuarioRegistro = models.ForeignKey('usuarios.Usuarios', default=1, on_delete=models.PROTECT, null=True)
@@ -47,7 +47,7 @@ class Centros(models.Model):
         id = models.AutoField(primary_key=True)
         nombre = models.CharField(max_length=50)
         departamentos = models.ForeignKey('sitios.Departamentos', default=1, on_delete=models.PROTECT, null=True)
-        ciudades = models.ForeignKey('sitios.Ciudades', default=1, on_delete=models.PROTECT, null=True)
+        ciudades = models.ForeignKey('sitios.Ciudades', default=1, on_delete=models.PROTECT, null=True , related_name = 'ciudadesDepartamentos' )
         ubicacion = models.CharField(max_length=50, default='')
         direccion = models.CharField(max_length=50)
         telefono = models.CharField(max_length=20)

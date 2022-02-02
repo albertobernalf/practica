@@ -14,19 +14,17 @@ class sedesClinicaAdmin(admin.ModelAdmin):
     list_filter =('nombre', 'ciudades')
 
 
-
-
-class CiudadesInline(admin.StackedInline):
+class CiudadesAdmin(admin.ModelAdmin):
         model =Ciudades
         fields = ('nombre',)
-        Extra = 0
+
         # Filtrar
         list_filter = ('nombre',)
 
 
 class DepartamentosAdmin(admin.ModelAdmin):
 
-    Inlines = [CiudadesInline]
+
     list_display=("id","nombre")
 
     search_fields =("id","nombre")
@@ -34,20 +32,14 @@ class DepartamentosAdmin(admin.ModelAdmin):
     list_filter = ('nombre',)
 
 admin.site.register(Departamentos, DepartamentosAdmin)
-admin.site.register(Ciudades)
+admin.site.register(Ciudades, CiudadesAdmin)
 
 
-#@admin.register(Ciudades)
-#class ciudadesAdmin(admin.ModelAdmin):
 
-#    list_display=("id","departamentos","nombre")
-
-#    search_fields =('id','departamentos','nombre')
-    # Filtrar
-#    list_filter = ('nombre','departamentos')
 
 @admin.register(Centros)
 class centrosAdmin(admin.ModelAdmin):
+        list_related_name = 'ciudadesDepartamentos'
 
         list_display = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro")
         search_fields = ("id","departamentos","ciudades" , "nombre","direccion", "telefono", "contacto","fechaRegistro")
