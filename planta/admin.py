@@ -10,15 +10,15 @@ class tiposPlantaAdmin(admin.ModelAdmin):
 
     list_display=("id","nombre")
     search_fields =("id","nombre")
-    readonly_fields = ["nombre"]
+    #readonly_fields = ["nombre"]
     # Filtrar
     list_filter = ('nombre', )
 
 @admin.register(PerfilesPlanta)
 class perfilesPlantaAdmin(admin.ModelAdmin):
 
-        list_display = ("id", "sedesClinica", "planta", "tiposPlanta")
-        search_fields =  ("id", "sedesClinica", "planta", "tiposPlanta")
+        list_display = ("id", "sedesClinica",  "tiposPlanta", "planta",)
+        search_fields =  ("id", "sedesClinica",  "tiposPlanta", "planta",)
         # Filtrar
         list_filter = ('sedesClinica','planta','tiposPlanta')
 
