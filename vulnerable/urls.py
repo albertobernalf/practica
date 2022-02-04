@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+
+from django.urls import path, include
 from camara import views
 
 from admisiones import views as viewsAdmisiones
@@ -64,6 +65,7 @@ urlpatterns = [
     path('admHospProvisional/<str:Documento>,<str:Perfil>,<str:Sede>,<str:Servicio>',
          viewsAdmisiones.admHospProvisional),
 
+    path('chaining/', include('smart_selects.urls')),
     path('menuAcceso/', viewsAdmisiones.menuAcceso),
     path('validaAcceso/', viewsAdmisiones.validaAcceso),
 

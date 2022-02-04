@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'sitios',
     'clinico',
     'citasMedicas',
-
+    'smart_selects',
     'planta',
     'admisiones',
 ]
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'vulnerable.wsgi.application'
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'vulnerable2',
+    'NAME': 'vulnerable3',
 	'HOST' : '192.168.0.13',
 	'PORT' : '3306',
 	'USER' : 'root',

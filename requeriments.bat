@@ -62,3 +62,4 @@ pip install urllib3==1.26.4
 pip install whitenoise==5.2.0
 pip install xlwt==1.3.0
 pip install zipp==3.4.1
+pip install django-smart-selects

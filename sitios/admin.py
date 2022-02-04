@@ -15,11 +15,11 @@ class sedesClinicaAdmin(admin.ModelAdmin):
 
 
 class CiudadesAdmin(admin.ModelAdmin):
-        model =Ciudades
-        fields = ('nombre',)
+    list_display = ("id", "nombre")
+    search_fields = ("id", "nombre")
 
-        # Filtrar
-        list_filter = ('nombre',)
+    # Filtrar
+    list_filter = ('nombre',)
 
 
 class DepartamentosAdmin(admin.ModelAdmin):

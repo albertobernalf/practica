@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils.timezone import now
 
+
+from smart_selects.db_fields import GroupedForeignKey
+from smart_selects.db_fields import ChainedForeignKey
+
 # Create your models here.
 
 class SedesClinica(models.Model):
@@ -47,7 +51,11 @@ class Centros(models.Model):
         id = models.AutoField(primary_key=True)
         nombre = models.CharField(max_length=50)
         departamentos = models.ForeignKey('sitios.Departamentos', default=1, on_delete=models.PROTECT, null=True)
-        ciudades = models.ForeignKey('sitios.Ciudades', default=1, on_delete=models.PROTECT, null=True , related_name = 'ciudadesDepartamentos' )
+        # ciudades = GroupedForeignKey('sitios.Ciudades', "departamentos"
+        ciudades = ChainedForeignKey(Ciudades, chained_field='departamentos', chained_model_field='departamentos',
+                                     show_all=False)
+
+
         ubicacion = models.CharField(max_length=50, default='')
         direccion = models.CharField(max_length=50)
         telefono = models.CharField(max_length=20)
